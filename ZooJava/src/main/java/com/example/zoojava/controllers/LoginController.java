@@ -1,6 +1,9 @@
 package com.example.zoojava.controllers;
 
-import javafx.event.ActionEvent;
+import com.example.zoojava.managers.SceneManager;
+import com.example.zoojava.models.enums.typeAnimal;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
@@ -10,6 +13,7 @@ import javafx.stage.Stage;
  * Controlador del login
  */
 public class LoginController {
+
     @FXML
     ImageView imagenLogo;
     @FXML
@@ -17,7 +21,11 @@ public class LoginController {
     @FXML
     TextField passwordText;
 
-    public void closeProgram(ActionEvent actionEvent) {
+
+    /**
+     * Para cerrar el programa, dependiendo de su confirmación.
+     */
+    public void closeProgram() {
         Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
         alerta.setTitle("Cerrar programa");
         alerta.setHeaderText("Desea cerrar el programa?");
@@ -30,9 +38,18 @@ public class LoginController {
         }
     }
 
-    public void openAbout(ActionEvent actionEvent) {
+
+    /**
+     * Para abrir el acerca de, del programa.
+     */
+    public void openAbout() {
+        SceneManager.openAbout();
     }
 
-    public void login(ActionEvent actionEvent) {
+
+    /**
+     * Login del usuario.
+     */
+    public void login() {
     }
 }

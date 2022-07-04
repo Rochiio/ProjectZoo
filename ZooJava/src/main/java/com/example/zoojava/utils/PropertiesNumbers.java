@@ -6,4 +6,8 @@ package com.example.zoojava.utils;
 public record PropertiesNumbers() {
     public static double WIDTH = 600;
     public static double HEIGHT = 400;
+
+    public static double WIDTH_ABOUT = 500;
+
+    public static double HEIGHT_ABOUT = 350;
 }

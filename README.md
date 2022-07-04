@@ -1,5 +1,9 @@
 # Project Zoo🐼
-## Autor/a
+<center>
+<img src="./ZooJava/src/main/resources/com/example/zoojava/img/Zoo-logo.png" width="300" height="300">
+</center>
+
+## Autora
 Rocío P.F
 
 
@@ -14,6 +18,7 @@ Proyecto con JavaFX sobre la administración de un zoológico, en el que se podr
 
 - **Github:** [Rochiio](https://github.com/Rochiio) 
 - **Twitter:** [Rochiio](https://twitter.com/SrtaRocii_)
+
 
 
 Colores del programa: https://coolors.co/palette/cb997e-eddcd2-fff1e6-f0efeb-ddbea9-a5a58d-b7b7a4

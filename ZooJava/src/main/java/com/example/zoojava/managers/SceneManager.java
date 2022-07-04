@@ -15,7 +15,7 @@ import java.io.IOException;
 public class SceneManager {
 
     public static void loginScene(Stage stage){
-        FXMLLoader fxmlLoader = new FXMLLoader(ZooApplication.class.getResource("views/hello-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(ZooApplication.class.getResource("views/login-view.fxml"));
         Scene scene;
         try {
             scene = new Scene(fxmlLoader.load(), PropertiesNumbers.WIDTH, PropertiesNumbers.HEIGHT);
@@ -24,7 +24,16 @@ public class SceneManager {
         }
         stage.setTitle("Login");
         stage.setScene(scene);
-        stage.getIcons().add(new Image(String.valueOf(ZooApplication.class.getResource("icons/zoo.png"))));
+        addIcon(stage);
         stage.show();
+    }
+
+
+    /**
+     * Para añadir a las escenas el icono.
+     * @param stage stage a añadir el icono.
+     */
+    private static void addIcon(Stage stage){
+        stage.getIcons().add(new Image(String.valueOf(ZooApplication.class.getResource("icons/zoo.png"))));
     }
 }

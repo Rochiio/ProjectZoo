@@ -1,8 +1,6 @@
 package com.example.zoojava.managers;
 
 
-import lombok.NonNull;
-
 import java.io.File;
 import java.sql.*;
 import java.util.Optional;
@@ -85,7 +83,7 @@ public class DataBaseManager {
      * @return ResultSet de la consulta
      * @throws SQLException No se ha podido realizar la consulta o la tabla no existe
      */
-    private ResultSet executeQuery(@NonNull String querySQL, Object... params) throws SQLException {
+    private ResultSet executeQuery(String querySQL, Object... params) throws SQLException {
         preparedStatement = connection.prepareStatement(querySQL);
         // Vamos a pasarle los parametros usando preparedStatement
         for (int i = 0; i < params.length; i++) {
@@ -102,7 +100,7 @@ public class DataBaseManager {
      * @return ResultSet de la consulta
      * @throws SQLException No se ha podido realizar la consulta o la tabla no existe
      */
-    public Optional<ResultSet> select(@NonNull String querySQL, Object... params) throws SQLException {
+    public Optional<ResultSet> select( String querySQL, Object... params) throws SQLException {
         return Optional.of(executeQuery(querySQL, params));
     }
 
@@ -116,7 +114,7 @@ public class DataBaseManager {
      * @return ResultSet de la consulta
      * @throws SQLException No se ha podido realizar la consulta o la tabla no existe o el desplazamiento es mayor que el número de registros
      */
-    public Optional<ResultSet> select(@NonNull String querySQL, int limit, int offset, Object... params) throws SQLException {
+    public Optional<ResultSet> select( String querySQL, int limit, int offset, Object... params) throws SQLException {
         String query = querySQL + " LIMIT " + limit + " OFFSET " + offset;
         return Optional.of(executeQuery(query, params));
     }
@@ -129,7 +127,7 @@ public class DataBaseManager {
      * @return Clave del registro insertado
      * @throws SQLException tabla no existe o no se ha podido realizar la operación
      */
-    public Optional<ResultSet> insert(@NonNull String insertSQL, Object... params) throws SQLException {
+    public Optional<ResultSet> insert( String insertSQL, Object... params) throws SQLException {
         // Con return generated keys obtenemos las claves generadas las claves es autonumerica por ejemplo,
         // el id de la tabla si es autonumérico. Si no quitar.
         // preparedStatement = connection.prepareStatement(insertSQL, preparedStatement.RETURN_GENERATED_KEYS);
@@ -150,7 +148,7 @@ public class DataBaseManager {
      * @return número de registros actualizados
      * @throws SQLException tabla no existe o no se ha podido realizar la operación
      */
-    public int update(@NonNull String updateSQL, Object... params) throws SQLException {
+    public int update( String updateSQL, Object... params) throws SQLException {
         return updateQuery(updateSQL, params);
     }
 
@@ -162,7 +160,7 @@ public class DataBaseManager {
      * @return número de registros eliminados
      * @throws SQLException tabla no existe o no se ha podido realizar la operación
      */
-    public int delete(@NonNull String deleteSQL, Object... params) throws SQLException {
+    public int delete( String deleteSQL, Object... params) throws SQLException {
         return updateQuery(deleteSQL, params);
     }
 
@@ -174,7 +172,7 @@ public class DataBaseManager {
      * @return número de registros eliminados
      * @throws SQLException tabla no existe o no se ha podido realizar la operación
      */
-    private int updateQuery(@NonNull String genericSQL, Object... params) throws SQLException {
+    private int updateQuery( String genericSQL, Object... params) throws SQLException {
         // Con return generated keys obtenemos las claves generadas
         preparedStatement = connection.prepareStatement(genericSQL);
         // Vamos a pasarle los parametros usando preparedStatement
@@ -191,7 +189,7 @@ public class DataBaseManager {
      * @return si ha tenido, 1
      * @throws SQLException no se ha podido realizar la operación
      */
-    public int genericUpdate(@NonNull String genericSQL) throws SQLException {
+    public int genericUpdate( String genericSQL) throws SQLException {
         // Con return generated keys obtenemos las claves generadas
         preparedStatement = connection.prepareStatement(genericSQL);
         return preparedStatement.executeUpdate();

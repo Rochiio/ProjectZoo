@@ -5,7 +5,7 @@ module com.example.zoojava {
     requires org.controlsfx.controls;
     requires org.kordamp.bootstrapfx.core;
     requires java.sql;
-    requires lombok;
+
 
     opens com.example.zoojava to javafx.fxml;
     opens com.example.zoojava.views;

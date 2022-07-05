@@ -1,7 +1,7 @@
 package com.example.zoojava.utils;
 
 /**
- * Clase con números que necesitaremos usar varias veces a lo largo de todo el programa.
+ * Clase con números que necesitaremos usar varias veces a lo largo del programa.
  */
 public record PropertiesNumbers() {
     public static double WIDTH = 600;

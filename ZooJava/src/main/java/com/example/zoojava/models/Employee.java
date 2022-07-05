@@ -1,27 +1,25 @@
 package com.example.zoojava.models;
 
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 
 import java.time.LocalDate;
 
 /**
  * Clase de creación de los empleados del zoo.
  */
-public class Empleados {
+public class Employee {
     private StringProperty name;
     private StringProperty email;
     private StringProperty password;
     private ObjectProperty<LocalDate> birthDate;
     private BooleanProperty isAdmin;
 
-    public Empleados(StringProperty name, StringProperty email, StringProperty password, ObjectProperty<LocalDate> birthDate, BooleanProperty isAdmin) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.birthDate = birthDate;
-        this.isAdmin = isAdmin;
+    public Employee(String name, String email, String password, LocalDate birthDate, boolean isAdmin) {
+        this.name = new SimpleStringProperty(name);
+        this.email = new SimpleStringProperty(email);
+        this.password = new SimpleStringProperty(password);
+        this.birthDate = new SimpleObjectProperty<>(birthDate);
+        this.isAdmin = new SimpleBooleanProperty(isAdmin);
     }
 
 

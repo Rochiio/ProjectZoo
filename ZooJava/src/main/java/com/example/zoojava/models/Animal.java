@@ -1,9 +1,7 @@
 package com.example.zoojava.models;
 
 import com.example.zoojava.models.enums.typeAnimal;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 
 import java.time.LocalDate;
 
@@ -17,11 +15,11 @@ public class Animal {
     private ObjectProperty<LocalDate> birthDate;
 
 
-    public Animal(IntegerProperty id, StringProperty name, ObjectProperty<typeAnimal> type, ObjectProperty<LocalDate> birthDate) {
-        this.id = id;
-        this.name = name;
-        this.type = type;
-        this.birthDate = birthDate;
+    public Animal(int id, String name, typeAnimal type, LocalDate birthDate) {
+        this.id = new SimpleIntegerProperty(id);
+        this.name = new SimpleStringProperty(name);
+        this.type = new SimpleObjectProperty<>(type);
+        this.birthDate = new SimpleObjectProperty<>(birthDate);
     }
 
     public int getId() {

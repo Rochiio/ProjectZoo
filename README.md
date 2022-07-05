@@ -1,7 +1,6 @@
 # Project Zoo🐼
-<center>
+
 <img src="./ZooJava/src/main/resources/com/example/zoojava/img/Zoo-logo.png" width="300" height="300">
-</center>
 
 ## Autora
 Rocío P.F

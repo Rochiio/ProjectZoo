@@ -1,9 +1,6 @@
 package com.example.zoojava.controllers;
 
 import com.example.zoojava.managers.SceneManager;
-import com.example.zoojava.models.enums.typeAnimal;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
@@ -15,11 +12,11 @@ import javafx.stage.Stage;
 public class LoginController {
 
     @FXML
-    ImageView imagenLogo;
+    private ImageView imagenLogo;
     @FXML
-    TextField emailText;
+    private TextField emailText;
     @FXML
-    TextField passwordText;
+    private TextField passwordText;
 
 
     /**

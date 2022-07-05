@@ -28,6 +28,7 @@ public class SceneManager {
         }
         stage.setTitle("Login");
         stage.setScene(scene);
+        stage.setResizable(false);
         addIcon(stage);
         stage.show();
     }
@@ -50,12 +51,13 @@ public class SceneManager {
         Scene scene;
         Stage stage = new Stage();
         try {
-            scene = new Scene(fxmlLoader.load(), PropertiesNumbers.WIDTH, PropertiesNumbers.HEIGHT);
+            scene = new Scene(fxmlLoader.load(), PropertiesNumbers.WIDTH_ABOUT, PropertiesNumbers.HEIGHT_ABOUT);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         stage.setTitle("About");
         stage.setScene(scene);
+        stage.setResizable(false);
         addIcon(stage);
         stage.show();
     }

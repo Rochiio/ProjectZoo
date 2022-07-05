@@ -4,6 +4,7 @@ import com.example.zoojava.models.Employee;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,10 +16,18 @@ class EmployeesRepositoryImplTest {
 
     @AfterEach
     void tearDown() {
+        repository.removeAll();
     }
 
     @Test
-    void add() {
+    void add() throws SQLException {
+        var add = repository.add(test);
+        assertAll(
+                () -> assertEquals(add.getName(),test.getName()),
+                () -> assertEquals(add.getEmail(),test.getEmail()),
+                () -> assertEquals(add.getPassword(),test.getPassword()),
+                () -> assertEquals(add.getBirthDate(),test.getBirthDate())
+                );
     }
 
     @Test

@@ -14,8 +14,8 @@ import java.util.Optional;
 public class DataBaseManager {
     private static DataBaseManager controller;
     private final String APP_PATH = System.getProperty("user.dir");
-    private final String DB_DIR = APP_PATH + File.separator + "db";
-    private final String DB_FILE = DB_DIR + File.separator + "hogwarts.db";
+    private final String DB_DIR = APP_PATH + File.separator + "sql";
+    private final String DB_FILE = DB_DIR + File.separator + "zoo.sqlite";
     private String dataBaseName;
 
     private String jdbcDriver;

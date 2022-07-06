@@ -22,6 +22,10 @@ public class Animal {
         this.birthDate = new SimpleObjectProperty<>(birthDate);
     }
 
+    public void setId(int id) {
+        this.id.set(id);
+    }
+
     public int getId() {
         return id.get();
     }

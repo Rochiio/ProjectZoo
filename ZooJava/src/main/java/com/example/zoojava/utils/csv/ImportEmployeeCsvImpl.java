@@ -11,17 +11,17 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ImportCsvImpl implements Import<Employee> {
-    private Path current = Paths.get("user.dir");
-    private String directory = current.toAbsolutePath() + File.separator + "csv";
-    private String fileCsv = directory + File.separator + "empleados.csv";
+public class ImportEmployeeCsvImpl implements ImportEmployeeCsv {
+    private final Path CURRENT = Paths.get("user.dir");
+    private final String DIR = CURRENT.toAbsolutePath() + File.separator + "csv";
+    private final String FILE_CSV = DIR + File.separator + "empleados.csv";
 
 
     @Override
     public List<Employee> importData() {
         List<Employee> lista;
         try {
-            lista= Files.lines(Path.of(fileCsv)).skip(1).map(this::changeToEmployee).collect(Collectors.toList());
+            lista= Files.lines(Path.of(FILE_CSV)).skip(1).map(this::changeToEmployee).collect(Collectors.toList());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

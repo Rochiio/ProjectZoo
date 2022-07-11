@@ -53,18 +53,52 @@ class AnimalsRepositoryImplTest {
     }
 
     @Test
-    void remove() {
+    void remove() throws SQLException {
+        var add = repository.add(test);
+        var remove = repository.remove(add);
+        assertAll(
+                () -> assertEquals(remove.getId(),add.getId()),
+                () -> assertEquals(remove.getName(),add.getName()),
+                () -> assertEquals(remove.getType(),add.getType()),
+                () -> assertEquals(remove.getBirthDate(),add.getBirthDate())
+        );
     }
 
     @Test
-    void findAll() {
+    void findAll() throws SQLException {
+        var add = repository.add(test);
+        var lista = repository.findAll();
+        assertAll(
+                () -> assertEquals(lista.size(),1),
+                () -> assertEquals(lista.get(0).getId(),add.getId()),
+                () -> assertEquals(lista.get(0).getName(),add.getName()),
+                () -> assertEquals(lista.get(0).getType(),add.getType()),
+                () -> assertEquals(lista.get(0).getBirthDate(),add.getBirthDate())
+        );
     }
 
     @Test
-    void findById() {
+    void findById() throws SQLException {
+        var add = repository.add(test);
+        var find = repository.findById(add.getId());
+        assertAll(
+                () -> assertEquals(find.getId(),add.getId()),
+                () -> assertEquals(find.getName(),add.getName()),
+                () -> assertEquals(find.getType(),add.getType()),
+                () -> assertEquals(find.getBirthDate(),add.getBirthDate())
+        );
     }
 
     @Test
-    void modifyById() {
+    void modifyById() throws SQLException {
+        var add = repository.add(test);
+        add.setName("cambiado");
+        var modify = repository.modifyById(add.getId(),add);
+        assertAll(
+                () -> assertEquals(modify.getId(),add.getId()),
+                () -> assertEquals(modify.getName(),add.getName()),
+                () -> assertEquals(modify.getType(),add.getType()),
+                () -> assertEquals(modify.getBirthDate(),add.getBirthDate())
+        );
     }
 }

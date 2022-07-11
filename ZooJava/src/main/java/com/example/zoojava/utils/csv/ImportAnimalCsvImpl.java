@@ -13,9 +13,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ImportAnimalCsvImpl implements ImportAnimalCsv {
-    private final Path CURRENT = Paths.get("user.dir");
+    private final Path CURRENT = Paths.get("");
     private final String DIR = CURRENT.toAbsolutePath() + File.separator + "csv";
-    private final String FILE_CSV = DIR + File.separator + "empleados.csv";
+    private final String FILE_CSV = DIR + File.separator + "animales.csv";
 
 
     @Override
@@ -30,11 +30,21 @@ public class ImportAnimalCsvImpl implements ImportAnimalCsv {
     }
 
     private Animal changeToAnimal(String line){
-        var campos = line.split(",");
+        var campos = line.split(";");
         var id = Integer.parseInt(campos[0]);
         var name = campos[1];
         var type = typeAnimal.valueOf(campos[2]);
-        var birthDate = LocalDate.parse(campos[3]);
-        return new Animal(id, name, type, birthDate);
+        var birthDate = parseFecha(campos[3]);
+        var img = campos[4];
+        return new Animal(id, name, type, birthDate,img);
+    }
+
+
+    private LocalDate parseFecha(String campo) {
+        var fecha = campo.split("/");
+        var dia = Integer.parseInt(fecha[0]);
+        var mes = Integer.parseInt(fecha[1]);
+        var year = Integer.parseInt(fecha[2]);
+        return LocalDate.of(year,mes,dia);
     }
 }

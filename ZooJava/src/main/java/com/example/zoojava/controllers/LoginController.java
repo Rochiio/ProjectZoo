@@ -1,7 +1,6 @@
 package com.example.zoojava.controllers;
 
 import com.example.zoojava.managers.SceneManager;
-import com.example.zoojava.models.Employee;
 import com.example.zoojava.repositories.employees.EmployeesRepository;
 import com.example.zoojava.repositories.employees.EmployeesRepositoryImpl;
 import com.example.zoojava.utils.Globals;
@@ -10,17 +9,24 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
+import javax.inject.Inject;
+
 /**
  * Controlador del login
  */
 public class LoginController {
-    private EmployeesRepository repository = new EmployeesRepositoryImpl();
+    private EmployeesRepository repository;
     @FXML
     private ImageView imagenLogo;
     @FXML
     private TextField emailText;
     @FXML
     private TextField passwordText;
+
+    @Inject
+    public LoginController(EmployeesRepository repository) {
+        this.repository = repository;
+    }
 
 
     /**

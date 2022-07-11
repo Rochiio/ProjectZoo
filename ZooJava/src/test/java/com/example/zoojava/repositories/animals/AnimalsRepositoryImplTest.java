@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class AnimalsRepositoryImplTest {
 
     private final AnimalsRepository repository = new AnimalsRepositoryImpl();
-    private final Animal test = new Animal(1,"Kuno", typeAnimal.MAMIFEROS,LocalDate.now());
+    private final Animal test = new Animal(1,"Kuno", typeAnimal.MAMIFEROS,LocalDate.now(),null);
 
 
     @AfterEach
@@ -47,7 +47,8 @@ class AnimalsRepositoryImplTest {
         assertAll(
                 () -> assertEquals(add.getName(),test.getName()),
                 () -> assertEquals(add.getType(),test.getType()),
-                () -> assertEquals(add.getBirthDate(),test.getBirthDate())
+                () -> assertEquals(add.getBirthDate(),test.getBirthDate()),
+                () -> assertEquals(add.getImg(),test.getImg())
         );
 
     }
@@ -60,7 +61,8 @@ class AnimalsRepositoryImplTest {
                 () -> assertEquals(remove.getId(),add.getId()),
                 () -> assertEquals(remove.getName(),add.getName()),
                 () -> assertEquals(remove.getType(),add.getType()),
-                () -> assertEquals(remove.getBirthDate(),add.getBirthDate())
+                () -> assertEquals(remove.getBirthDate(),add.getBirthDate()),
+                () -> assertEquals(remove.getImg(),add.getImg())
         );
     }
 
@@ -73,7 +75,8 @@ class AnimalsRepositoryImplTest {
                 () -> assertEquals(lista.get(0).getId(),add.getId()),
                 () -> assertEquals(lista.get(0).getName(),add.getName()),
                 () -> assertEquals(lista.get(0).getType(),add.getType()),
-                () -> assertEquals(lista.get(0).getBirthDate(),add.getBirthDate())
+                () -> assertEquals(lista.get(0).getBirthDate(),add.getBirthDate()),
+                () -> assertEquals(lista.get(0).getImg(),add.getImg())
         );
     }
 
@@ -85,7 +88,8 @@ class AnimalsRepositoryImplTest {
                 () -> assertEquals(find.getId(),add.getId()),
                 () -> assertEquals(find.getName(),add.getName()),
                 () -> assertEquals(find.getType(),add.getType()),
-                () -> assertEquals(find.getBirthDate(),add.getBirthDate())
+                () -> assertEquals(find.getBirthDate(),add.getBirthDate()),
+                () -> assertEquals(find.getImg(), add.getImg())
         );
     }
 
@@ -98,7 +102,8 @@ class AnimalsRepositoryImplTest {
                 () -> assertEquals(modify.getId(),add.getId()),
                 () -> assertEquals(modify.getName(),add.getName()),
                 () -> assertEquals(modify.getType(),add.getType()),
-                () -> assertEquals(modify.getBirthDate(),add.getBirthDate())
+                () -> assertEquals(modify.getBirthDate(),add.getBirthDate()),
+                () -> assertEquals(modify.getImg(),add.getImg())
         );
     }
 }

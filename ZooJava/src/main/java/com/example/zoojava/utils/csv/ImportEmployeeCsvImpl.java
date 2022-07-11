@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ImportEmployeeCsvImpl implements ImportEmployeeCsv {
-    private final Path CURRENT = Paths.get("user.dir");
+    private final Path CURRENT = Paths.get("");
     private final String DIR = CURRENT.toAbsolutePath() + File.separator + "csv";
     private final String FILE_CSV = DIR + File.separator + "empleados.csv";
 
@@ -29,12 +29,20 @@ public class ImportEmployeeCsvImpl implements ImportEmployeeCsv {
     }
 
     private Employee changeToEmployee(String line){
-        var campos = line.split(",");
+        var campos = line.split(";");
         var name = campos[0];
         var email = campos[1];
         var password = campos[2];
-        var birthDate = LocalDate.parse(campos[3]);
+        var birthDate = parseFecha(campos[3]);
         var isAdmin = Boolean.parseBoolean(campos[4]);
         return new Employee(name, email, password,birthDate,isAdmin);
+    }
+
+    private LocalDate parseFecha(String campo) {
+        var fecha = campo.split("/");
+        var dia = Integer.parseInt(fecha[0]);
+        var mes = Integer.parseInt(fecha[1]);
+        var year = Integer.parseInt(fecha[2]);
+        return LocalDate.of(year,mes,dia);
     }
 }

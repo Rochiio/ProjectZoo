@@ -13,13 +13,15 @@ public class Animal {
     private StringProperty name;
     private ObjectProperty<typeAnimal> type;
     private ObjectProperty<LocalDate> birthDate;
+    private StringProperty img;
 
 
-    public Animal(int id, String name, typeAnimal type, LocalDate birthDate) {
+    public Animal(int id, String name, typeAnimal type, LocalDate birthDate, String img) {
         this.id = new SimpleIntegerProperty(id);
         this.name = new SimpleStringProperty(name);
         this.type = new SimpleObjectProperty<>(type);
         this.birthDate = new SimpleObjectProperty<>(birthDate);
+        this.img = new SimpleStringProperty(img);
     }
 
     public void setId(int id) {
@@ -69,5 +71,17 @@ public class Animal {
 
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate.set(birthDate);
+    }
+
+    public String getImg() {
+        return img.get();
+    }
+
+    public StringProperty imgProperty() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img.set(img);
     }
 }

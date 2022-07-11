@@ -5,6 +5,7 @@ import com.example.zoojava.models.Animal;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import javax.inject.Inject;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -16,15 +17,19 @@ public class AnimalsRepositoryImpl implements AnimalsRepository{
 
     private ObservableList<Animal> list = FXCollections.observableArrayList();
     //TODO añadir constructores para hacer DI.
-    private final DataBaseManager db = DataBaseManager.getInstance();
+    private final DataBaseManager db;
 
+    @Inject
+    public AnimalsRepositoryImpl(DataBaseManager db) {
+        this.db = db;
+    }
 
     @Override
     public Animal add(Animal value) throws SQLException {
-        String query = "INSERT INTO animales VALUES (null, ?, ?, ?)";
+        String query = "INSERT INTO animales VALUES (null, ?, ?, ?, ?)";
             db.open();
                 ResultSet result = db.insert(query,value.getName(),value.getType().toString()
-                                ,value.getBirthDate().toString()).orElseThrow(() -> new SQLException("Error al insertar animal"));
+                                ,value.getBirthDate().toString(),value.getImg()).orElseThrow(() -> new SQLException("Error al insertar animal"));
                     if (result.next()) {
                         value.setId(result.getInt(1));
                         list.add(value);
@@ -69,9 +74,10 @@ public class AnimalsRepositoryImpl implements AnimalsRepository{
 
     @Override
     public Animal modifyById(int id, Animal newAnimal) throws SQLException {
-        String query = "UPDATE animales SET name=?, type=?, birthDate=? WHERE id=?";
+        String query = "UPDATE animales SET name=?, type=?, birthDate=?, img=? WHERE id=?";
             db.open();
-                var result = db.update(query,newAnimal.getName(),newAnimal.getType(),newAnimal.getBirthDate(),id);
+                var result = db.update(query,newAnimal.getName(),newAnimal.getType(),newAnimal.getBirthDate(),
+                        newAnimal.getImg(),id);
                 db.close();
                 if (result>0){
                     return newAnimal;

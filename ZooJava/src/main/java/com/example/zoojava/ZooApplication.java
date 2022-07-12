@@ -1,10 +1,12 @@
 package com.example.zoojava;
 
+import com.example.zoojava.DI.components.DaggerDataSystemComponent;
 import com.example.zoojava.managers.SceneManager;
 import com.example.zoojava.repositories.animals.AnimalsRepository;
 import com.example.zoojava.repositories.animals.AnimalsRepositoryImpl;
 import com.example.zoojava.repositories.employees.EmployeesRepository;
 import com.example.zoojava.repositories.employees.EmployeesRepositoryImpl;
+import com.example.zoojava.utils.DataSystem;
 import com.example.zoojava.utils.csv.ImportAnimalCsv;
 import com.example.zoojava.utils.csv.ImportAnimalCsvImpl;
 import com.example.zoojava.utils.csv.ImportEmployeeCsv;
@@ -25,10 +27,7 @@ import java.sql.SQLException;
  * Programa para la administración de un zoológico, utilizando testing, dagger, logger.
  */
 public class ZooApplication extends Application {
-    private static ImportAnimalCsv animalCsv = new ImportAnimalCsvImpl();
-    private static ImportEmployeeCsv employeeCsv = new ImportEmployeeCsvImpl();
-    private static AnimalsRepository animalsRepository = new AnimalsRepositoryImpl();
-    private static EmployeesRepository employeesRepository = new EmployeesRepositoryImpl();
+
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -36,34 +35,11 @@ public class ZooApplication extends Application {
     }
 
     public static void main(String[] args) {
-        putData();
+        DataSystem system = DaggerDataSystemComponent.create().build();
+        system.addData();
         launch();
     }
 
-
-    /**
-     * Para añadir los datos base sacados del csv
-     */
-    private static void putData() {
-        var listEmployee = employeeCsv.importData();
-        var listAnimals = animalCsv.importData();
-
-            listEmployee.forEach((a) -> {
-                try {
-                    employeesRepository.add(a);
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
-            });
-            listAnimals.forEach((a) -> {
-                try {
-                    animalsRepository.add(a);
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
-            });
-
-    }
 
 
 }

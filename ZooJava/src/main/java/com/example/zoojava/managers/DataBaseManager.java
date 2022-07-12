@@ -1,6 +1,7 @@
 package com.example.zoojava.managers;
 
 
+import javax.inject.Inject;
 import java.io.File;
 import java.sql.*;
 import java.util.Optional;
@@ -29,21 +30,22 @@ public class DataBaseManager {
      * y abre la conexión
      * Aseguramos siempre una misma instancia.
      */
-    private DataBaseManager() {
+    @Inject
+    public DataBaseManager() {
         initConfig();
     }
 
-    /**
-     * Devuelve una instancia del controlador
-     *
-     * @return instancia del controladorBD
-     */
-    public static DataBaseManager getInstance() {
-        if (controller == null) {
-            controller = new DataBaseManager();
-        }
-        return controller;
-    }
+//    /**
+//     * Devuelve una instancia del controlador
+//     *
+//     * @return instancia del controladorBD
+//     */
+//    public static DataBaseManager getInstance() {
+//        if (controller == null) {
+//            controller = new DataBaseManager();
+//        }
+//        return controller;
+//    }
 
     /**
      * Carga la configuración de acceso al servidor de Base de Datos

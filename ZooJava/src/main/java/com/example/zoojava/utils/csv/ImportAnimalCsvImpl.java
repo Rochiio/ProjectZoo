@@ -3,6 +3,7 @@ package com.example.zoojava.utils.csv;
 import com.example.zoojava.models.Animal;
 import com.example.zoojava.models.enums.typeAnimal;
 
+import javax.inject.Inject;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -17,6 +18,9 @@ public class ImportAnimalCsvImpl implements ImportAnimalCsv {
     private final String DIR = CURRENT.toAbsolutePath() + File.separator + "csv";
     private final String FILE_CSV = DIR + File.separator + "animales.csv";
 
+    @Inject
+    public ImportAnimalCsvImpl() {
+    }
 
     @Override
     public List<Animal> importData() {

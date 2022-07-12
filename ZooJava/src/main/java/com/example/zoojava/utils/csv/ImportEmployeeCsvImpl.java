@@ -2,6 +2,7 @@ package com.example.zoojava.utils.csv;
 
 import com.example.zoojava.models.Employee;
 
+import javax.inject.Inject;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -16,6 +17,9 @@ public class ImportEmployeeCsvImpl implements ImportEmployeeCsv {
     private final String DIR = CURRENT.toAbsolutePath() + File.separator + "csv";
     private final String FILE_CSV = DIR + File.separator + "empleados.csv";
 
+    @Inject
+    public ImportEmployeeCsvImpl() {
+    }
 
     @Override
     public List<Employee> importData() {

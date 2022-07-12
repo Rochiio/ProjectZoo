@@ -1,21 +1,22 @@
 package com.example.zoojava.controllers;
 
+import com.example.zoojava.DI.components.DaggerEmployeeRepositoryComponent;
 import com.example.zoojava.managers.SceneManager;
 import com.example.zoojava.repositories.employees.EmployeesRepository;
-import com.example.zoojava.repositories.employees.EmployeesRepositoryImpl;
 import com.example.zoojava.utils.Globals;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
-import javax.inject.Inject;
+
 
 /**
  * Controlador del login
  */
 public class LoginController {
-    private EmployeesRepository repository;
+    private EmployeesRepository repository= DaggerEmployeeRepositoryComponent.create().build();
     @FXML
     private ImageView imagenLogo;
     @FXML
@@ -23,10 +24,6 @@ public class LoginController {
     @FXML
     private TextField passwordText;
 
-    @Inject
-    public LoginController(EmployeesRepository repository) {
-        this.repository = repository;
-    }
 
 
     /**
@@ -57,8 +54,8 @@ public class LoginController {
     /**
      * Login del usuario.
      */
-    public void login() {
-        if(!isErrorsEmpty()) {
+    public void login(ActionEvent actionEvent) {
+        if (!isErrorsEmpty()){
             isCorrectLogin();
         }
     }
@@ -79,9 +76,14 @@ public class LoginController {
                 } else{
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Error de login");
-                    alert.setContentText("Usuario no encontrado");
+                    alert.setContentText("Login incorrecto");
                     alert.show();
                 }
+            }else{
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error de login");
+                alert.setContentText("Usuario no encontrado");
+                alert.show();
             }
     }
 
@@ -98,7 +100,10 @@ public class LoginController {
             alert.setTitle("Error de campos");
             alert.setContentText(sb.toString());
             alert.show();
+            return true;
         }
        return false;
     }
+
+
 }

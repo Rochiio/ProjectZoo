@@ -12,6 +12,6 @@ public class DataBaseModule {
     @Provides
     @Singleton
     DataBaseManager provideDataBaseManager() {
-        return DataBaseManager.getInstance();
+        return new DataBaseManager();
     }
 }

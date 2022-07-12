@@ -16,13 +16,14 @@ import java.util.List;
 public class AnimalsRepositoryImpl implements AnimalsRepository{
 
     private ObservableList<Animal> list = FXCollections.observableArrayList();
-    //TODO añadir constructores para hacer DI.
     private final DataBaseManager db;
+
 
     @Inject
     public AnimalsRepositoryImpl(DataBaseManager db) {
         this.db = db;
     }
+
 
     @Override
     public Animal add(Animal value) throws SQLException {

@@ -1,28 +1,24 @@
 package com.example.zoojava.utils;
 
+import com.example.zoojava.DI.components.DaggerAnimalCsvComponent;
+import com.example.zoojava.DI.components.DaggerAnimalRepositoryComponent;
+import com.example.zoojava.DI.components.DaggerEmployeeCsvComponent;
+import com.example.zoojava.DI.components.DaggerEmployeeRepositoryComponent;
 import com.example.zoojava.repositories.animals.AnimalsRepository;
 import com.example.zoojava.repositories.employees.EmployeesRepository;
 import com.example.zoojava.utils.csv.ImportAnimalCsv;
 import com.example.zoojava.utils.csv.ImportEmployeeCsv;
 
-import javax.inject.Inject;
 import java.sql.SQLException;
 
 
 public class DataSystem {
-    private ImportAnimalCsv animalCsv;
-    private ImportEmployeeCsv employeeCsv;
-    private AnimalsRepository animalsRepository;
-    private EmployeesRepository employeesRepository;
+    private ImportAnimalCsv animalCsv= DaggerAnimalCsvComponent.create().build();
+    private ImportEmployeeCsv employeeCsv= DaggerEmployeeCsvComponent.create().build();
+    private AnimalsRepository animalsRepository= DaggerAnimalRepositoryComponent.create().build();
+    private EmployeesRepository employeesRepository= DaggerEmployeeRepositoryComponent.create().build();
 
-    @Inject
-    public DataSystem(ImportAnimalCsv animalCsv, ImportEmployeeCsv employeeCsv,
-                      AnimalsRepository animalsRepository, EmployeesRepository employeesRepository) {
-        this.animalCsv = animalCsv;
-        this.employeeCsv = employeeCsv;
-        this.employeesRepository = employeesRepository;
-        this.animalsRepository = animalsRepository;
-    }
+
 
 
     /**

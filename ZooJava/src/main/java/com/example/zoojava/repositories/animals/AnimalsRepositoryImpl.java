@@ -7,7 +7,7 @@ import javafx.collections.ObservableList;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
+
 /**
  * Repositorio de animales del programa, implementado con una base de datos sqlite y con lista de observables.
  * En algunos métodos uso directamente la lista para ahorranos entradas a la base de datos.
@@ -58,7 +58,7 @@ public class AnimalsRepositoryImpl implements AnimalsRepository{
     }
 
     @Override
-    public List<Animal> findAll() {
+    public ObservableList<Animal> findAll() {
         return list;
     }
 

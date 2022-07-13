@@ -1,6 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" />
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.zoojava.controllers.AnimalsController">
+   <children>
+      <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <TableView fx:id="tabla" prefHeight="400.0" prefWidth="303.0">
+              <columns>
+                <TableColumn fx:id="columnName" prefWidth="150.0" text="Name" />
+                <TableColumn fx:id="columnBirthDate" prefWidth="152.0" text="BirthDate" />
+              </columns>
+            </TableView>
+            <VBox prefHeight="195.0" prefWidth="297.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="40.0" prefWidth="297.0" spacing="50.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#addAnimal" text="Añadir" />
+                        <Button mnemonicParsing="false" onAction="#deleteAnimal" text="Eliminar" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="315.0" prefWidth="297.0">
+                     <children>
+                        <VBox alignment="BOTTOM_LEFT" prefHeight="290.0" prefWidth="98.0" spacing="12.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="BirthDate">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Type">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                           <HBox.margin>
+                              <Insets bottom="20.0" left="10.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox alignment="TOP_RIGHT" prefHeight="315.0" prefWidth="197.0" spacing="10.0">
+                           <children>
+                              <ImageView fx:id="imageAnimal" fitHeight="189.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true" />
+                              <TextField fx:id="txtName" />
+                              <DatePicker fx:id="calendar" prefHeight="25.0" prefWidth="199.0" />
+                              <ComboBox fx:id="comboType" prefHeight="25.0" prefWidth="194.0" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="40.0" prefWidth="297.0" spacing="50.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#modifyAnimal" text="Modificar" />
+                        <Button mnemonicParsing="false" onAction="#cleanAnimal" text="Limpiar" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

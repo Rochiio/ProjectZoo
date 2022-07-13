@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class AnimalsRepositoryImplTest {
 
-    private final AnimalsRepository repository = new AnimalsRepositoryImpl();
+    private final AnimalsRepository repository = AnimalsRepositoryImpl.getInstance();
     private final Animal test = new Animal(1,"Kuno", typeAnimal.MAMIFEROS,LocalDate.now(),null);
 
 

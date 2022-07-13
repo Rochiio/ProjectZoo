@@ -14,7 +14,7 @@ import java.io.IOException;
  * Programa para la administración de un zoológico, utilizando testing, dagger, logger.
  */
 public class ZooApplication extends Application {
-
+//TODO al final de hacer el programa añadir dagger
 
     @Override
     public void start(Stage stage) throws IOException {

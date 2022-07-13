@@ -1,8 +1,8 @@
 package com.example.zoojava.controllers;
 
-import com.example.zoojava.DI.components.DaggerEmployeeRepositoryComponent;
 import com.example.zoojava.managers.SceneManager;
 import com.example.zoojava.repositories.employees.EmployeesRepository;
+import com.example.zoojava.repositories.employees.EmployeesRepositoryImpl;
 import com.example.zoojava.utils.Globals;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,7 +16,7 @@ import javafx.stage.Stage;
  * Controlador del login
  */
 public class LoginController {
-    private EmployeesRepository repository= DaggerEmployeeRepositoryComponent.create().build();
+    private EmployeesRepository repository= EmployeesRepositoryImpl.getInstance();
     @FXML
     private ImageView imagenLogo;
     @FXML
@@ -73,6 +73,7 @@ public class LoginController {
                     alerta.setTitle("Login Correcto");
                     alerta.setHeaderText("Bienvenido "+ user.getName());
                     alerta.show();
+                    SceneManager.openInicio((Stage)imagenLogo.getScene().getWindow());
                 } else{
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Error de login");

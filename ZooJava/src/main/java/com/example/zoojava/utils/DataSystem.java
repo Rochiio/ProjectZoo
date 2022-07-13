@@ -1,22 +1,22 @@
 package com.example.zoojava.utils;
 
-import com.example.zoojava.DI.components.DaggerAnimalCsvComponent;
-import com.example.zoojava.DI.components.DaggerAnimalRepositoryComponent;
-import com.example.zoojava.DI.components.DaggerEmployeeCsvComponent;
-import com.example.zoojava.DI.components.DaggerEmployeeRepositoryComponent;
 import com.example.zoojava.repositories.animals.AnimalsRepository;
+import com.example.zoojava.repositories.animals.AnimalsRepositoryImpl;
 import com.example.zoojava.repositories.employees.EmployeesRepository;
+import com.example.zoojava.repositories.employees.EmployeesRepositoryImpl;
 import com.example.zoojava.utils.csv.ImportAnimalCsv;
+import com.example.zoojava.utils.csv.ImportAnimalCsvImpl;
 import com.example.zoojava.utils.csv.ImportEmployeeCsv;
+import com.example.zoojava.utils.csv.ImportEmployeeCsvImpl;
 
 import java.sql.SQLException;
 
 
 public class DataSystem {
-    private ImportAnimalCsv animalCsv= DaggerAnimalCsvComponent.create().build();
-    private ImportEmployeeCsv employeeCsv= DaggerEmployeeCsvComponent.create().build();
-    private AnimalsRepository animalsRepository= DaggerAnimalRepositoryComponent.create().build();
-    private EmployeesRepository employeesRepository= DaggerEmployeeRepositoryComponent.create().build();
+    private ImportAnimalCsv animalCsv= new ImportAnimalCsvImpl();
+    private ImportEmployeeCsv employeeCsv= new ImportEmployeeCsvImpl();
+    private AnimalsRepository animalsRepository= AnimalsRepositoryImpl.getInstance();
+    private EmployeesRepository employeesRepository= EmployeesRepositoryImpl.getInstance();
 
 
 

@@ -6,7 +6,7 @@ import com.example.zoojava.models.Employee;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import javax.inject.Inject;
+
 import java.sql.SQLException;
 import java.util.List;
 
@@ -15,13 +15,20 @@ import java.util.List;
  * En algunos métodos uso directamente la lista para ahorranos entradas a la base de datos.
  */
 public class EmployeesRepositoryImpl implements EmployeesRepository {
+    private static EmployeesRepositoryImpl instance = null;
     private ObservableList<Employee> list = FXCollections.observableArrayList();
-    //TODO añadir constructores para hacer DI.
-    private final DataBaseManager db;
 
-    @Inject
-    public EmployeesRepositoryImpl(DataBaseManager db) {
-        this.db = db;
+    private final DataBaseManager db = DataBaseManager.getInstance();
+
+
+    public static EmployeesRepositoryImpl getInstance() {
+        if (instance == null){
+            instance = new EmployeesRepositoryImpl();
+        }
+        return instance;
+    }
+
+    private EmployeesRepositoryImpl() {
     }
 
     @Override

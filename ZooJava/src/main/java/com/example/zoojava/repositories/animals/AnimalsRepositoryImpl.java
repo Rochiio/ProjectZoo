@@ -5,7 +5,6 @@ import com.example.zoojava.models.Animal;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import javax.inject.Inject;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -14,16 +13,21 @@ import java.util.List;
  * En algunos métodos uso directamente la lista para ahorranos entradas a la base de datos.
  */
 public class AnimalsRepositoryImpl implements AnimalsRepository{
-
+    private static AnimalsRepositoryImpl instance = null;
     private ObservableList<Animal> list = FXCollections.observableArrayList();
-    private final DataBaseManager db;
+    private final DataBaseManager db = DataBaseManager.getInstance();
 
 
-    @Inject
-    public AnimalsRepositoryImpl(DataBaseManager db) {
-        this.db = db;
+    public static AnimalsRepositoryImpl getInstance() {
+        if (instance == null){
+            instance = new AnimalsRepositoryImpl();
+        }
+        return instance;
     }
 
+
+    private AnimalsRepositoryImpl() {
+    }
 
     @Override
     public Animal add(Animal value) throws SQLException {

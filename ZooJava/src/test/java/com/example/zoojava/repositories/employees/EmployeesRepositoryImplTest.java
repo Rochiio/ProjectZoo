@@ -1,5 +1,6 @@
 package com.example.zoojava.repositories.employees;
 
+import com.example.zoojava.managers.DataBaseManager;
 import com.example.zoojava.models.Employee;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,7 +12,7 @@ import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.*;
 
 class EmployeesRepositoryImplTest {
-    private final EmployeesRepository repository = new EmployeesRepositoryImpl();
+    private final EmployeesRepository repository = EmployeesRepositoryImpl.getInstance();
     private final Employee test = new Employee("Paco","paco.paquito@gmail.com","12345", LocalDate.now(),true);
 
 

@@ -18,9 +18,6 @@ public class ImportAnimalCsvImpl implements ImportAnimalCsv {
     private final String DIR = CURRENT.toAbsolutePath() + File.separator + "csv";
     private final String FILE_CSV = DIR + File.separator + "animales.csv";
 
-    @Inject
-    public ImportAnimalCsvImpl() {
-    }
 
     @Override
     public List<Animal> importData() {

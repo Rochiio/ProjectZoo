@@ -13,7 +13,7 @@ import java.util.Optional;
  * @version 1.0
  */
 public class DataBaseManager {
-    private static DataBaseManager controller;
+    private static DataBaseManager controller = null;
     private final String APP_PATH = System.getProperty("user.dir");
     private final String DB_DIR = APP_PATH + File.separator + "sql";
     private final String DB_FILE = DB_DIR + File.separator + "zoo.sqlite";
@@ -30,9 +30,15 @@ public class DataBaseManager {
      * y abre la conexión
      * Aseguramos siempre una misma instancia.
      */
-    @Inject
-    public DataBaseManager() {
+    private DataBaseManager() {
         initConfig();
+    }
+
+    public static DataBaseManager getInstance() {
+        if (controller==null){
+            controller = new DataBaseManager();
+        }
+        return controller;
     }
 
 //    /**

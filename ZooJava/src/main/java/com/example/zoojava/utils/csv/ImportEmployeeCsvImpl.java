@@ -17,9 +17,6 @@ public class ImportEmployeeCsvImpl implements ImportEmployeeCsv {
     private final String DIR = CURRENT.toAbsolutePath() + File.separator + "csv";
     private final String FILE_CSV = DIR + File.separator + "empleados.csv";
 
-    @Inject
-    public ImportEmployeeCsvImpl() {
-    }
 
     @Override
     public List<Employee> importData() {

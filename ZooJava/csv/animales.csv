@@ -1,2 +1,6 @@
 ﻿id;name;type;birthDate;img
 1;Lola;MAMIFEROS;11/10/2020;null
+2;Chip;MAMIFEROS;20/09/2021;null
+3;Chop;MAMIFEROS;20/09/2021;null
+4;Nemo;PECES;10/07/2022;null
+5;Dory;PECES;04/06/2022;null

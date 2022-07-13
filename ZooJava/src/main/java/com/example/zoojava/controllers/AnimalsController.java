@@ -37,7 +37,7 @@ public class AnimalsController {
     @FXML
     private DatePicker calendar;
     @FXML
-    private ComboBox<typeAnimal> combo;
+    private ChoiceBox<typeAnimal> choiceType;
 
 
 
@@ -76,11 +76,39 @@ public class AnimalsController {
 
 
     /**
+     * Poner los nuevos datos.
+     * @param newValue los nuevos datos del animal.
+     */
+    private void putDataAnimal(Animal newValue) {
+        txtName.setText(newValue.getName());
+        calendar.setValue(newValue.getBirthDate());
+        choiceType.setValue(newValue.getType());
+        imageAnimal.setImage(changeImage(newValue));
+    }
+
+
+    /**
+     * Cambiar la imagen al poner los nuevos valores del animal.
+     * @param newValue los nuevos valores a poner.
+     * @return la imagen del animal o la imagen por defecto.
+     */
+    private Image changeImage(Animal newValue) {
+        if(newValue.getImg().equals("null")){
+            return addImageDefault();
+        }else{
+            URL imgeUrl = ZooApplication.class.getResource(newValue.getImg());
+            return  new Image(String.valueOf(imgeUrl),60,40,false,false);
+        }
+    }
+
+
+    /**
      * Poner los valores a las celdas de las tablas.
      */
     private void valoresCeldas() {
         columnName.setCellValueFactory(cellFactory -> cellFactory.getValue().nameProperty());
         columnBirthDate.setCellValueFactory(cellFactory -> cellFactory.getValue().birthDateProperty());
+        choiceType.setItems(types);
     }
 
     /**
@@ -107,7 +135,7 @@ public class AnimalsController {
     public void cleanAnimal() {
         txtName.setText("");
         calendar.setValue(LocalDate.now());
-        combo.setValue(typeAnimal.MAMIFEROS);
+        choiceType.setValue(typeAnimal.MAMIFEROS);
         imageAnimal.setImage(addImageDefault());
     }
 

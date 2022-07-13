@@ -2,7 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -61,7 +61,7 @@
                               <ImageView fx:id="imageAnimal" fitHeight="189.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true" />
                               <TextField fx:id="txtName" />
                               <DatePicker fx:id="calendar" prefHeight="25.0" prefWidth="199.0" />
-                              <ComboBox fx:id="comboType" prefHeight="25.0" prefWidth="194.0" />
+                              <ChoiceBox fx:id="choiceType" prefHeight="25.0" prefWidth="209.0" />
                            </children>
                         </VBox>
                      </children>

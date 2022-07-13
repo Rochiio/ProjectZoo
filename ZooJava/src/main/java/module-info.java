@@ -6,7 +6,8 @@ module com.example.zoojava {
     requires org.kordamp.bootstrapfx.core;
     requires java.sql;
     requires java.desktop;
-
+    requires dagger;
+    requires javax.inject;
 
     opens com.example.zoojava to javafx.fxml;
     opens com.example.zoojava.views;

@@ -47,51 +47,48 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.zoojava.controllers.LoginController">
-  <children>
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.zoojava.controllers.LoginController">
     <MenuBar VBox.vgrow="NEVER">
-      <menus>
         <Menu mnemonicParsing="false" text="Opciones">
-          <items>
-            <MenuItem mnemonicParsing="false" onAction="#closeProgram" text="Cerrar" />
-                  <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" onAction="#openAbout" text="Acerca De" />
-          </items>
+            <MenuItem mnemonicParsing="false" onAction="#closeProgram" text="Cerrar"/>
+            <SeparatorMenuItem mnemonicParsing="false"/>
+            <MenuItem mnemonicParsing="false" onAction="#openAbout" text="Acerca De"/>
         </Menu>
-      </menus>
     </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
-         <children>
-            <HBox alignment="CENTER" prefHeight="375.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <VBox alignment="TOP_CENTER" prefHeight="375.0" prefWidth="327.0">
-                     <children>
-                        <ImageView fx:id="imagenLogo" fitHeight="199.0" fitWidth="194.0" pickOnBounds="true" preserveRatio="true">
-                           <VBox.margin>
-                              <Insets bottom="30.0" />
-                           </VBox.margin>
-                           <image>
-                              <Image url="@../img/Zoo-logo.png" />
-                           </image>
+        <HBox alignment="CENTER" prefHeight="375.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0"
+              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <VBox alignment="TOP_CENTER" prefHeight="375.0" prefWidth="327.0">
+                    <children>
+                        <ImageView fx:id="imagenLogo" fitHeight="199.0" fitWidth="194.0" pickOnBounds="true"
+                                   preserveRatio="true">
+                            <VBox.margin>
+                                <Insets bottom="30.0"/>
+                            </VBox.margin>
+                            <Image url="@../img/Zoo-logo.png"/>
                         </ImageView>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Correo Electrónico" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Correo Electrónico"/>
                         <TextField fx:id="emailText" promptText="email">
-                           <VBox.margin>
-                              <Insets bottom="20.0" />
-                           </VBox.margin>
+                            <VBox.margin>
+                                <Insets bottom="20.0"/>
+                            </VBox.margin>
                         </TextField>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña"/>
                         <PasswordField fx:id="passwordText" promptText="password">
-                           <VBox.margin>
-                              <Insets bottom="20.0" />
-                           </VBox.margin>
+                            <VBox.margin>
+                                <Insets bottom="20.0"/>
+                            </VBox.margin>
                         </PasswordField>
-                        <Button mnemonicParsing="false" onAction="#login" text="Login" />
-                     </children>
-                  </VBox>
-               </children>
-            </HBox>
-         </children>
+                        <Button mnemonicParsing="false" onAction="#login" text="Login">
+                            <VBox.margin>
+                                <Insets/>
+                            </VBox.margin>
+                        </Button>
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
     </AnchorPane>
-  </children>
 </VBox>

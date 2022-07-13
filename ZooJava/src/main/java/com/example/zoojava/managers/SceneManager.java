@@ -14,6 +14,7 @@ import java.io.IOException;
  */
 public class SceneManager {
 
+
     /**
      * Escena del login
      * @param stage stage al que añadir la escena
@@ -35,15 +36,6 @@ public class SceneManager {
 
 
     /**
-     * Para añadir a las escenas el icono.
-     * @param stage stage a añadir el icono.
-     */
-    private static void addIcon(Stage stage){
-        stage.getIcons().add(new Image(String.valueOf(ZooApplication.class.getResource("icons/zoo.png"))));
-    }
-
-
-    /**
      * Abrir escena del acerca de.
      */
     public static void openAbout() {
@@ -60,5 +52,73 @@ public class SceneManager {
         stage.setResizable(false);
         addIcon(stage);
         stage.show();
+    }
+
+
+    /**
+     * Abrir escena de inicio
+     */
+    public static void openInicio(Stage stage) {
+        FXMLLoader fxmlLoader = new FXMLLoader(ZooApplication.class.getResource("views/inicio-view.fxml"));
+        Scene scene;
+        try {
+            scene = new Scene(fxmlLoader.load(), PropertiesNumbers.WIDTH, PropertiesNumbers.HEIGHT);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        stage.setTitle("Inicio");
+        stage.setScene(scene);
+        stage.setResizable(false);
+        addIcon(stage);
+        stage.show();
+    }
+
+
+    /**
+     * Para poner la escena de los animales.
+     */
+    public static void animalsScene() {
+        FXMLLoader fxmlLoader = new FXMLLoader(ZooApplication.class.getResource("views/animals-view.fxml"));
+        Scene scene;
+        Stage stage = new Stage();
+        try {
+            scene = new Scene(fxmlLoader.load(), PropertiesNumbers.WIDTH, PropertiesNumbers.HEIGHT);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        stage.setTitle("Animales");
+        stage.setScene(scene);
+        stage.setResizable(false);
+        addIcon(stage);
+        stage.show();
+    }
+
+
+    /**
+     * Para poner la escena de los empleados.
+     */
+    public static void employeesScene() {
+        FXMLLoader fxmlLoader = new FXMLLoader(ZooApplication.class.getResource("views/employees-view.fxml"));
+        Scene scene;
+        Stage stage = new Stage();
+        try {
+            scene = new Scene(fxmlLoader.load(), PropertiesNumbers.WIDTH, PropertiesNumbers.HEIGHT);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        stage.setTitle("Empleados");
+        stage.setScene(scene);
+        stage.setResizable(false);
+        addIcon(stage);
+        stage.show();
+    }
+
+
+    /**
+     * Para añadir a las escenas el icono.
+     * @param stage stage a añadir el icono.
+     */
+    private static void addIcon(Stage stage){
+        stage.getIcons().add(new Image(String.valueOf(ZooApplication.class.getResource("icons/zoo.png"))));
     }
 }

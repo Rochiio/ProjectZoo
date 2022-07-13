@@ -1,6 +1,7 @@
 package com.example.zoojava.managers;
 
 
+import javax.inject.Inject;
 import java.io.File;
 import java.sql.*;
 import java.util.Optional;
@@ -12,7 +13,7 @@ import java.util.Optional;
  * @version 1.0
  */
 public class DataBaseManager {
-    private static DataBaseManager controller;
+    private static DataBaseManager controller = null;
     private final String APP_PATH = System.getProperty("user.dir");
     private final String DB_DIR = APP_PATH + File.separator + "sql";
     private final String DB_FILE = DB_DIR + File.separator + "zoo.sqlite";
@@ -33,17 +34,24 @@ public class DataBaseManager {
         initConfig();
     }
 
-    /**
-     * Devuelve una instancia del controlador
-     *
-     * @return instancia del controladorBD
-     */
     public static DataBaseManager getInstance() {
-        if (controller == null) {
+        if (controller==null){
             controller = new DataBaseManager();
         }
         return controller;
     }
+
+//    /**
+//     * Devuelve una instancia del controlador
+//     *
+//     * @return instancia del controladorBD
+//     */
+//    public static DataBaseManager getInstance() {
+//        if (controller == null) {
+//            controller = new DataBaseManager();
+//        }
+//        return controller;
+//    }
 
     /**
      * Carga la configuración de acceso al servidor de Base de Datos

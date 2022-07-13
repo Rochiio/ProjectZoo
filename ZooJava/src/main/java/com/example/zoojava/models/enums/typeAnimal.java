@@ -6,10 +6,10 @@ package com.example.zoojava.models.enums;
  */
 public enum typeAnimal {
 
-    MAMIFEROS("Mamiferos"),
-    AVES("Aves"),
-    REPTILES("Reptiles"),
-    PECES("Peces");
+    MAMIFEROS("MAMIFEROS"),
+    AVES("AVES"),
+    REPTILES("REPTILES"),
+    PECES("PECES");
 
     typeAnimal(String type) {
     }

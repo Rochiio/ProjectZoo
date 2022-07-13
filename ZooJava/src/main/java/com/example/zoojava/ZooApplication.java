@@ -1,10 +1,8 @@
 package com.example.zoojava;
 
 import com.example.zoojava.managers.SceneManager;
+import com.example.zoojava.utils.DataSystem;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -16,12 +14,19 @@ import java.io.IOException;
  * Programa para la administración de un zoológico, utilizando testing, dagger, logger.
  */
 public class ZooApplication extends Application {
+//TODO al final de hacer el programa añadir dagger
+
     @Override
     public void start(Stage stage) throws IOException {
         SceneManager.loginScene(stage);
     }
 
     public static void main(String[] args) {
+        DataSystem system = new DataSystem();
+        system.addData();
         launch();
     }
+
+
+
 }

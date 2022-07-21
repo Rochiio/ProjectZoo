@@ -8,10 +8,12 @@ import com.example.zoojava.repositories.animals.AnimalsRepositoryImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -36,6 +38,8 @@ public class AnimalsController {
     @FXML
     private ImageView imageAnimal;
     @FXML
+    private TextField txtId;
+    @FXML
     private TextField txtName;
     @FXML
     private DatePicker calendar;
@@ -47,6 +51,7 @@ public class AnimalsController {
     @FXML
     void initialize(){
         types.addAll(typeAnimal.values());
+        txtId.setDisable(true);
         loadData();
         valoresCeldas();
         eventos();
@@ -83,6 +88,7 @@ public class AnimalsController {
      * @param newValue los nuevos datos del animal.
      */
     private void putDataAnimal(Animal newValue) {
+        txtId.setText(String.valueOf(newValue.getId()));
         txtName.setText(newValue.getName());
         calendar.setValue(newValue.getBirthDate());
         choiceType.setValue(newValue.getType());
@@ -96,11 +102,10 @@ public class AnimalsController {
      * @return la imagen del animal o la imagen por defecto.
      */
     private Image changeImage(Animal newValue) {
-        if(newValue.getImg() == null){
+        if(newValue.getImg() == null || newValue.getImg().equalsIgnoreCase("null")){
             return addImageDefault();
         }else{
-            URL imgeUrl = ZooApplication.class.getResource(newValue.getImg());
-            return  new Image(String.valueOf(imgeUrl),60,40,false,false);
+            return new Image(String.valueOf(newValue.getImg()));
         }
     }
 
@@ -193,6 +198,15 @@ public class AnimalsController {
     }
 
     public void modifyAnimal() {
+        if(!isEmptyFields () && isCorrectFields() ) {
+            var animal = tabla.getSelectionModel().getSelectedItem();
+            var modifyAnimal = new Animal(animal.getId(), txtName.getText(),choiceType.getValue(),calendar.getValue(),null);
+            try {
+                animals.modifyById(animal.getId(),modifyAnimal);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
 
@@ -200,6 +214,7 @@ public class AnimalsController {
      * Limpiar los datos sobre el animal.
      */
     public void cleanAnimal() {
+        txtName.setText("0");
         txtName.setText("");
         calendar.setValue(LocalDate.now());
         choiceType.setValue(typeAnimal.MAMIFEROS);
@@ -213,6 +228,28 @@ public class AnimalsController {
      */
     private Image addImageDefault() {
         URL imgeUrl = ZooApplication.class.getResource("icons/img.png");
-        return  new Image(String.valueOf(imgeUrl),60,40,false,false);
+        return  new Image(String.valueOf(imgeUrl));
+    }
+
+    /**
+     * Poner la nueva imagen.
+     * @param actionEvent
+     */
+    public void newImage(ActionEvent actionEvent) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Elegir nueva imagen");
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("imagenes png","*.png")
+                , new FileChooser.ExtensionFilter("imagenes jpg","*.jpg"));
+        var img =fileChooser.showOpenDialog(txtName.getScene().getWindow());
+            if (img != null) {
+                imageAnimal.setImage(new Image(img.getAbsolutePath()));
+                var animal = tabla.getSelectionModel().getSelectedItem();
+                animal.setImg(img.getAbsolutePath());
+                try {
+                    animals.modifyById(animal.getId(), animal);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
     }
 }

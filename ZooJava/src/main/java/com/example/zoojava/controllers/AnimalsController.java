@@ -8,14 +8,19 @@ import com.example.zoojava.repositories.animals.AnimalsRepositoryImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.Objects;
+
+
+
 
 /**
  * Controlador de la escena de animales.
@@ -33,6 +38,8 @@ public class AnimalsController {
     @FXML
     private ImageView imageAnimal;
     @FXML
+    private TextField txtId;
+    @FXML
     private TextField txtName;
     @FXML
     private DatePicker calendar;
@@ -44,6 +51,7 @@ public class AnimalsController {
     @FXML
     void initialize(){
         types.addAll(typeAnimal.values());
+        txtId.setDisable(true);
         loadData();
         valoresCeldas();
         eventos();
@@ -80,6 +88,7 @@ public class AnimalsController {
      * @param newValue los nuevos datos del animal.
      */
     private void putDataAnimal(Animal newValue) {
+        txtId.setText(String.valueOf(newValue.getId()));
         txtName.setText(newValue.getName());
         calendar.setValue(newValue.getBirthDate());
         choiceType.setValue(newValue.getType());
@@ -93,11 +102,10 @@ public class AnimalsController {
      * @return la imagen del animal o la imagen por defecto.
      */
     private Image changeImage(Animal newValue) {
-        if(newValue.getImg().equals("null")){
+        if(newValue.getImg() == null || newValue.getImg().equalsIgnoreCase("null")){
             return addImageDefault();
         }else{
-            URL imgeUrl = ZooApplication.class.getResource(newValue.getImg());
-            return  new Image(String.valueOf(imgeUrl),60,40,false,false);
+            return new Image(String.valueOf(newValue.getImg()));
         }
     }
 
@@ -119,13 +127,86 @@ public class AnimalsController {
     }
 
 
+    /**
+     * Añadir un animal
+     * TODO añadir la función de elegir la imagen
+     */
     public void addAnimal() {
+        if(!isEmptyFields () && isCorrectFields() ) {
+            var newAnimal = new Animal(0,txtName.getText(),choiceType.getValue(),calendar.getValue(),null);
+            try {
+                animals.add(newAnimal);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
+
+    /**
+     * Ver si los datos son correctos y pasan el filtrado antes de añadir al animal.
+     * @return true o false dependiendo de si h a pasado el filtrado.
+     */
+    private boolean isCorrectFields() {
+        StringBuilder sb = new StringBuilder();
+        if(!txtName.getText().matches("[A-Z][a-z]*")){
+            sb.append("Nombre incorrecto").append("\n");
+        }
+        if (calendar.getValue().isAfter(LocalDate.now())){
+            sb.append("No puede ser la fecha de nacimiento mayor que el día de hoy.").append("\n");
+        }
+
+        if (sb.length()>0){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Error de datos");
+            alert.setTitle("Error");
+            alert.setContentText(sb.toString());
+            alert.show();
+            return false;
+        }
+
+        return true;
+    }
+
+
+    /**
+     * Para saber si el TextField está vacío.
+     * @return true o false dependiendo de si está vacío.
+     */
+    private boolean isEmptyFields() {
+        return txtName.getText().equals("");
+    }
+
+
+    /**
+     * Eliminar al animal seleccionado.
+     */
     public void deleteAnimal() {
+        var deleteAnimal = tabla.getSelectionModel().getSelectedItem();
+        var alerta = new Alert(Alert.AlertType.CONFIRMATION);
+        alerta.setTitle("Confirmación");
+        alerta.setHeaderText("Desea eliminar al animal" + deleteAnimal.getName());
+        var respuesta = alerta.showAndWait();
+
+        if(respuesta.get()==ButtonType.OK){
+            try {
+                animals.remove(deleteAnimal);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     public void modifyAnimal() {
+        if(!isEmptyFields () && isCorrectFields() ) {
+            var animal = tabla.getSelectionModel().getSelectedItem();
+            var modifyAnimal = new Animal(animal.getId(), txtName.getText(),choiceType.getValue(),calendar.getValue(),null);
+            try {
+                animals.modifyById(animal.getId(),modifyAnimal);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
 
@@ -133,6 +214,7 @@ public class AnimalsController {
      * Limpiar los datos sobre el animal.
      */
     public void cleanAnimal() {
+        txtName.setText("0");
         txtName.setText("");
         calendar.setValue(LocalDate.now());
         choiceType.setValue(typeAnimal.MAMIFEROS);
@@ -146,6 +228,28 @@ public class AnimalsController {
      */
     private Image addImageDefault() {
         URL imgeUrl = ZooApplication.class.getResource("icons/img.png");
-        return  new Image(String.valueOf(imgeUrl),60,40,false,false);
+        return  new Image(String.valueOf(imgeUrl));
+    }
+
+    /**
+     * Poner la nueva imagen.
+     * @param actionEvent
+     */
+    public void newImage(ActionEvent actionEvent) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Elegir nueva imagen");
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("imagenes png","*.png")
+                , new FileChooser.ExtensionFilter("imagenes jpg","*.jpg"));
+        var img =fileChooser.showOpenDialog(txtName.getScene().getWindow());
+            if (img != null) {
+                imageAnimal.setImage(new Image(img.getAbsolutePath()));
+                var animal = tabla.getSelectionModel().getSelectedItem();
+                animal.setImg(img.getAbsolutePath());
+                try {
+                    animals.modifyById(animal.getId(), animal);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
     }
 }

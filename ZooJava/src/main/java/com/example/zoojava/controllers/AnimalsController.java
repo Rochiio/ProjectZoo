@@ -119,6 +119,7 @@ public class AnimalsController {
         choiceType.setItems(types);
     }
 
+
     /**
      * Cargar los datos de la tabla.
      */
@@ -129,7 +130,6 @@ public class AnimalsController {
 
     /**
      * Añadir un animal
-     * TODO añadir la función de elegir la imagen
      */
     public void addAnimal() {
         if(!isEmptyFields () && isCorrectFields() ) {
@@ -197,6 +197,10 @@ public class AnimalsController {
         }
     }
 
+
+    /**
+     * Modificar a un animal.
+     */
     public void modifyAnimal() {
         if(!isEmptyFields () && isCorrectFields() ) {
             var animal = tabla.getSelectionModel().getSelectedItem();

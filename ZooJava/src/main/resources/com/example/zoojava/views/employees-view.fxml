@@ -59,10 +59,10 @@
                   </HBox>
                   <HBox alignment="BOTTOM_CENTER" prefHeight="40.0" prefWidth="297.0" spacing="20.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#addEmployee" text="Añadir" />
-                        <Button mnemonicParsing="false" onAction="#deleteEmployee" text="Eliminar" />
-                        <Button mnemonicParsing="false" onAction="#modifyEmployee" text="Modificar" />
-                        <Button mnemonicParsing="false" onAction="#cleanEmployee" text="Limpiar" />
+                        <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#addEmployee" text="Añadir" />
+                        <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#deleteEmployee" text="Eliminar" />
+                        <Button fx:id="btnModify" mnemonicParsing="false" onAction="#modifyEmployee" text="Modificar" />
+                        <Button fx:id="btnClean" mnemonicParsing="false" onAction="#cleanEmployee" text="Limpiar" />
                      </children>
                   </HBox>
                </children>

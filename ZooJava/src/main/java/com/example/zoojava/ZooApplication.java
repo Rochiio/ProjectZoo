@@ -11,10 +11,10 @@ import java.io.IOException;
  * @author Rocío P.F
  * @version 1.0
  * github: Rochiio
- * Programa para la administración de un zoológico, utilizando testing, dagger, logger.
+ * Programa para la administración de un zoológico, utilizando dagger, logger y haciendo test.
  */
 public class ZooApplication extends Application {
-//TODO al final de hacer el programa añadir dagger
+//TODO al final de hacer el programa añadir dagger y logger
 
     @Override
     public void start(Stage stage) throws IOException {

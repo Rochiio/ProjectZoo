@@ -8,7 +8,6 @@ import javafx.collections.ObservableList;
 
 
 import java.sql.SQLException;
-import java.util.List;
 
 /**
  * Repositorio de empleados del programa, implementado con una base de datos sqlite y con lista de observables.
@@ -60,7 +59,7 @@ public class EmployeesRepositoryImpl implements EmployeesRepository {
     }
 
     @Override
-    public List<Employee> findAll() {
+    public ObservableList<Employee> findAll() {
         return list;
     }
 

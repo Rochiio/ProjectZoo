@@ -15,59 +15,48 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.zoojava.controllers.EmployeesController">
-   <children>
-      <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <TableView fx:id="tabla" prefHeight="400.0" prefWidth="303.0">
-              <columns>
-                <TableColumn fx:id="columnName" prefWidth="153.0" text="Name" />
-                <TableColumn fx:id="columnEmail" prefWidth="149.0" text="Email" />
-              </columns>
-            </TableView>
-            <VBox prefHeight="195.0" prefWidth="297.0">
-               <children>
-                  <HBox prefHeight="315.0" prefWidth="297.0">
-                     <children>
-                        <VBox alignment="BOTTOM_LEFT" prefHeight="290.0" prefWidth="98.0" spacing="20.0">
-                           <HBox.margin>
-                              <Insets bottom="30.0" left="10.0" />
-                           </HBox.margin>
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name" wrappingWidth="65.13671875" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Email" wrappingWidth="65.13671875" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Password" wrappingWidth="65.13671875" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Confirm" wrappingWidth="65.13671875" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="BirthDate" wrappingWidth="65.13671875" />
-                           </children>
-                        </VBox>
-                        <VBox alignment="TOP_RIGHT" prefHeight="315.0" prefWidth="197.0" spacing="10.0">
-                           <children>
-                              <ImageView fitHeight="146.0" fitWidth="151.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../icons/user.png" />
-                                 </image></ImageView>
-                              <TextField fx:id="txtName" />
-                              <TextField fx:id="txtEmail" />
-                              <PasswordField fx:id="txtPass" />
-                              <PasswordField fx:id="txtConfirmPass" />
-                              <DatePicker fx:id="calendar" prefHeight="25.0" prefWidth="199.0" />
-                              <CheckBox fx:id="checkAdmin" mnemonicParsing="false" prefHeight="17.0" prefWidth="203.0" text="Admin" />
-                           </children>
-                        </VBox>
-                     </children>
-                  </HBox>
-                  <HBox alignment="BOTTOM_CENTER" prefHeight="40.0" prefWidth="297.0" spacing="20.0">
-                     <children>
-                        <Button mnemonicParsing="false" onAction="#addEmployee" text="Añadir" />
-                        <Button mnemonicParsing="false" onAction="#deleteEmployee" text="Eliminar" />
-                        <Button mnemonicParsing="false" onAction="#modifyEmployee" text="Modificar" />
-                        <Button mnemonicParsing="false" onAction="#cleanEmployee" text="Limpiar" />
-                     </children>
-                  </HBox>
-               </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+            prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.zoojava.controllers.EmployeesController">
+   <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+         AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TableView fx:id="tabla" prefHeight="400.0" prefWidth="303.0">
+         <columns>
+            <TableColumn fx:id="columnName" prefWidth="153.0" text="Name"/>
+            <TableColumn fx:id="columnEmail" prefWidth="149.0" text="Email"/>
+         </columns>
+      </TableView>
+      <VBox prefHeight="195.0" prefWidth="297.0">
+         <HBox prefHeight="315.0" prefWidth="297.0">
+            <VBox alignment="BOTTOM_LEFT" prefHeight="290.0" prefWidth="98.0" spacing="20.0">
+               <HBox.margin>
+                  <Insets bottom="30.0" left="10.0"/>
+               </HBox.margin>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name" wrappingWidth="65.13671875"/>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Email" wrappingWidth="65.13671875"/>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Password" wrappingWidth="65.13671875"/>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Confirm" wrappingWidth="65.13671875"/>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="BirthDate" wrappingWidth="65.13671875"/>
             </VBox>
-         </children>
-      </HBox>
-   </children>
+            <VBox alignment="TOP_RIGHT" prefHeight="315.0" prefWidth="197.0" spacing="10.0">
+               <ImageView fitHeight="146.0" fitWidth="151.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../icons/user.png"/>
+               </ImageView>
+               <TextField fx:id="txtName"/>
+               <TextField fx:id="txtEmail"/>
+               <PasswordField fx:id="txtPass"/>
+               <PasswordField fx:id="txtConfirmPass"/>
+               <DatePicker fx:id="calendar" prefHeight="25.0" prefWidth="199.0"/>
+               <CheckBox fx:id="checkAdmin" mnemonicParsing="false" prefHeight="17.0" prefWidth="203.0"
+                         text="Admin"/>
+            </VBox>
+         </HBox>
+         <HBox alignment="BOTTOM_CENTER" prefHeight="40.0" prefWidth="297.0" spacing="20.0">
+            <Button mnemonicParsing="false" onAction="#addEmployee" text="Añadir"/>
+            <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#deleteEmployee" text="Eliminar"/>
+            <Button fx:id="btnModify" mnemonicParsing="false" onAction="#modifyEmployee" text="Modificar"/>
+            <Button mnemonicParsing="false" onAction="#cleanEmployee" text="Limpiar"/>
+         </HBox>
+      </VBox>
+   </HBox>
 </AnchorPane>

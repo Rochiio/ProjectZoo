@@ -15,6 +15,7 @@ import java.io.IOException;
  */
 public class ZooApplication extends Application {
 //TODO al final de hacer el programa añadir dagger y logger
+    //TODO añadir backup de empleados y animales
 
     @Override
     public void start(Stage stage) throws IOException {

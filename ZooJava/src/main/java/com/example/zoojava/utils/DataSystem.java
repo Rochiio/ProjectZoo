@@ -1,5 +1,6 @@
 package com.example.zoojava.utils;
 
+import com.example.zoojava.di.components.DaggerAnimalRepositoryComponent;
 import com.example.zoojava.repositories.animals.AnimalsRepository;
 import com.example.zoojava.repositories.animals.AnimalsRepositoryImpl;
 import com.example.zoojava.repositories.employees.EmployeesRepository;
@@ -15,7 +16,7 @@ import java.sql.SQLException;
 public class DataSystem {
     private ImportAnimalCsv animalCsv= new ImportAnimalCsvImpl();
     private ImportEmployeeCsv employeeCsv= new ImportEmployeeCsvImpl();
-    private AnimalsRepository animalsRepository= AnimalsRepositoryImpl.getInstance();
+    private AnimalsRepository animalsRepository= DaggerAnimalRepositoryComponent.create().build();
     private EmployeesRepository employeesRepository= EmployeesRepositoryImpl.getInstance();
 
 

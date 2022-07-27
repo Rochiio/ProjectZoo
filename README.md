@@ -7,11 +7,19 @@ Rocío P.F
 
 
 ### Description:
-Proyecto con JavaFX sobre la administración de un zoológico, en el que se podrá:
-- Añadir, modificar y eliminar animales.🐒
-- Añadir y eliminar empleados.🙍🏻‍♀️🙍🏻‍♂️
+Proyecto con JavaFX sobre la administración de un zoológico.
+- Se podrá añadir, modificar y eliminar los animales.
+- También se les podrá añadir imágenes a la ficha del animal.
+
+----
+
+- Habrá dos tipos de empleados: los normales y los administradores.
+- Los administradores podrán añadir y eliminar empleados.
+- Mientras que los normales podrán ver los empleados que hay en el sistema pero no podrán realizar ninguna acción sobre ellos.
 
 
+
+<br><br>
 <h3 align="center">🌸Redes🌸</h3>
 <hr>
 

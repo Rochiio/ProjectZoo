@@ -37,7 +37,10 @@ public class EmployeesController {
     @FXML
     private Button btnDelete;
     @FXML
-    private Button btnModify;
+    private Button btnAdd;
+    @FXML
+    private Button btnClean;
+
 
 
     @FXML
@@ -53,12 +56,15 @@ public class EmployeesController {
 
     /**
      * Opciones que solo tienen habilitados los administradores.
+     * Los usuarios que no son administradores podrán ver los empleados que hay en el sistema pero no podrán realizar
+     * ninguna acción con ellos.
      */
     private void opcionesAdmin() {
         var employee = Globals.globalEmployee;
         if (!employee.isIsAdmin()){
             btnDelete.setDisable(true);
-            btnModify.setDisable(true);
+            btnAdd.setDisable(true);
+            btnClean.setDisable(true);
         }
     }
 
@@ -138,7 +144,7 @@ public class EmployeesController {
 
     /**
      * Para saber si ya existe un empleado con dicho correo
-     * @return verdader o falso dependiendo de si existe un empleado con ese email
+     * @return verdadero o falso dependiendo de si existe un empleado con ese email
      */
     private boolean isEmailValid() {
         var employee = employees.findByEmail(txtEmail.getText());
@@ -192,14 +198,21 @@ public class EmployeesController {
      * Eliminar un empleado.
      */
     public void deleteEmployee() {
+        var selectEmployee = tabla.getSelectionModel().getSelectedItem();
+        var confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmacion.setTitle("Confirmación");
+            confirmacion.setHeaderText("Confirmación de eliminación de empleado");
+            confirmacion.setContentText("Desea eliminar al empleado " +selectEmployee.getName()+ " ?");
+        var result = confirmacion.showAndWait();
+        if(result.get()==ButtonType.OK){
+            try {
+                employees.remove(selectEmployee);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
-
-    /**
-     * Modificar un empleado.
-     */
-    public void modifyEmployee() {
-    }
 
 
     /**

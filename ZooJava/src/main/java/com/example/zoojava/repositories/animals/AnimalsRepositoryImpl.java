@@ -15,7 +15,7 @@ import java.sql.SQLException;
 public class AnimalsRepositoryImpl implements AnimalsRepository{
     private static AnimalsRepositoryImpl instance = null;
     private ObservableList<Animal> list = FXCollections.observableArrayList();
-    private final DataBaseManager db = DataBaseManager.getInstance();
+    private DataBaseManager db= DataBaseManager.getInstance();
 
 
     public static AnimalsRepositoryImpl getInstance() {
@@ -26,7 +26,7 @@ public class AnimalsRepositoryImpl implements AnimalsRepository{
     }
 
 
-    private AnimalsRepositoryImpl() {
+    private AnimalsRepositoryImpl(){
     }
 
     @Override

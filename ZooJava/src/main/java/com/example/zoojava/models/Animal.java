@@ -84,4 +84,8 @@ public class Animal {
     public void setImg(String img) {
         this.img.set(img);
     }
+
+    public String toCsv() {
+        return getId()+";"+getName()+";"+getType().toString()+";"+getBirthDate().toString()+";"+getImg();
+    }
 }

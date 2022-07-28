@@ -1,28 +1,22 @@
 package com.example.zoojava.utils.csv;
 
 import com.example.zoojava.models.Employee;
+import com.example.zoojava.utils.Globals;
 
-import javax.inject.Inject;
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class ImportEmployeeCsvImpl implements ImportEmployeeCsv {
-    private final Path CURRENT = Paths.get("");
-    private final String DIR = CURRENT.toAbsolutePath() + File.separator + "csv";
-    private final String FILE_CSV = DIR + File.separator + "empleados.csv";
-
 
     @Override
     public List<Employee> importData() {
         List<Employee> lista;
         try {
-            lista= Files.lines(Path.of(FILE_CSV)).skip(1).map(this::changeToEmployee).collect(Collectors.toList());
+            lista= Files.lines(Path.of(Globals.EMPLOYEE_CSV)).skip(1).map(this::changeToEmployee).collect(Collectors.toList());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -40,10 +34,10 @@ public class ImportEmployeeCsvImpl implements ImportEmployeeCsv {
     }
 
     private LocalDate parseFecha(String campo) {
-        var fecha = campo.split("/");
-        var dia = Integer.parseInt(fecha[0]);
+        var fecha = campo.split("-");
+        var dia = Integer.parseInt(fecha[2]);
         var mes = Integer.parseInt(fecha[1]);
-        var year = Integer.parseInt(fecha[2]);
+        var year = Integer.parseInt(fecha[0]);
         return LocalDate.of(year,mes,dia);
     }
 }

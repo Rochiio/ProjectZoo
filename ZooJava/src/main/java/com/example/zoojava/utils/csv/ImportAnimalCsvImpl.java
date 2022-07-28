@@ -2,28 +2,24 @@ package com.example.zoojava.utils.csv;
 
 import com.example.zoojava.models.Animal;
 import com.example.zoojava.models.enums.typeAnimal;
+import com.example.zoojava.utils.Globals;
 
 import javax.inject.Inject;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class ImportAnimalCsvImpl implements ImportAnimalCsv {
-    private final Path CURRENT = Paths.get("");
-    private final String DIR = CURRENT.toAbsolutePath() + File.separator + "csv";
-    private final String FILE_CSV = DIR + File.separator + "animales.csv";
-
 
     @Override
     public List<Animal> importData() {
         List<Animal> lista;
         try {
-            lista= Files.lines(Path.of(FILE_CSV)).skip(1).map(this::changeToAnimal).collect(Collectors.toList());
+            lista= Files.lines(Path.of(Globals.ANIMALS_CSV)).skip(1).map(this::changeToAnimal).collect(Collectors.toList());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

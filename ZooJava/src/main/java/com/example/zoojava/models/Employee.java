@@ -82,4 +82,8 @@ public class Employee {
     public void setIsAdmin(boolean isAdmin) {
         this.isAdmin.set(isAdmin);
     }
+
+    public String toCsv() {
+        return  getName()+";"+getEmail()+";"+getPassword()+";"+getBirthDate().toString()+";"+isIsAdmin();
+    }
 }

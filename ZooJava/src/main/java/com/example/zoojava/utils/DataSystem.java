@@ -22,8 +22,7 @@ public class DataSystem {
     private EmployeesRepository employeesRepository= EmployeesRepositoryImpl.getInstance();
 
 
-
-
+    
     /**
      * Añadir los datos necesarios.
      */
@@ -65,11 +64,34 @@ public class DataSystem {
     }
 
 
-    public void backup() {
+    /**
+     * Backup de los animales y empleados.
+     * Limpieza de base de datos.
+     * Al cerrar el programa.
+     */
+    public void backupAndClean() {
         backupAnimals();
         backupEmployees();
+        cleanDataBase();
     }
 
+
+    /**
+     * Limpieza base de datos al cerrar el programa.
+     */
+    private void cleanDataBase() {
+        try {
+            animalsRepository.removeAll();
+            employeesRepository.removeAll();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    /**
+     * Backup de los empleados
+     */
     private void backupEmployees() {
         try (PrintWriter pw = new PrintWriter(new FileWriter(Globals.EMPLOYEE_CSV, false))) {
             var employees = employeesRepository.findAll();

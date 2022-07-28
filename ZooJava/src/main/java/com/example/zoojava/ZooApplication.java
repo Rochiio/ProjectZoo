@@ -26,7 +26,7 @@ public class ZooApplication extends Application {
         DataSystem system = new DataSystem();
         system.addData();
         launch();
-        system.backup();
+        system.backupAndClean();
     }
 
 

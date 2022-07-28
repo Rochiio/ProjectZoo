@@ -16,7 +16,10 @@ Proyecto con JavaFX sobre la administración de un zoológico.
 - Habrá dos tipos de empleados: los normales y los administradores.
 - Los administradores podrán añadir y eliminar empleados.
 - Mientras que los normales podrán ver los empleados que hay en el sistema pero no podrán realizar ninguna acción sobre ellos.
+<br><br>
 
+
+### !Este proyecto es personal, sólo para mejorar y avanzar en la programación 
 
 
 <br><br>

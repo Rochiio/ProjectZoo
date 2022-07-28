@@ -34,10 +34,10 @@ public class ImportEmployeeCsvImpl implements ImportEmployeeCsv {
     }
 
     private LocalDate parseFecha(String campo) {
-        var fecha = campo.split("/");
-        var dia = Integer.parseInt(fecha[0]);
+        var fecha = campo.split("-");
+        var dia = Integer.parseInt(fecha[2]);
         var mes = Integer.parseInt(fecha[1]);
-        var year = Integer.parseInt(fecha[2]);
+        var year = Integer.parseInt(fecha[0]);
         return LocalDate.of(year,mes,dia);
     }
 }

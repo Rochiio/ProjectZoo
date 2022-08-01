@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.zoojava.controllers.EmployeesController">
+   <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TableView fx:id="tabla" prefHeight="400.0" prefWidth="303.0">
+         <columns>
+            <TableColumn fx:id="columnName" prefWidth="153.0" text="Name" />
+            <TableColumn fx:id="columnEmail" prefWidth="149.0" text="Email" />
+         </columns>
+      </TableView>
+      <VBox prefHeight="195.0" prefWidth="297.0">
+         <HBox prefHeight="315.0" prefWidth="297.0">
+            <VBox alignment="BOTTOM_LEFT" prefHeight="290.0" prefWidth="98.0" spacing="20.0">
+               <HBox.margin>
+                  <Insets bottom="30.0" left="10.0" />
+               </HBox.margin>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name" wrappingWidth="65.13671875" />
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Email" wrappingWidth="65.13671875" />
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Password" wrappingWidth="65.13671875" />
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Confirm" wrappingWidth="65.13671875" />
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="BirthDate" wrappingWidth="65.13671875" />
+            </VBox>
+            <VBox alignment="TOP_RIGHT" prefHeight="315.0" prefWidth="197.0" spacing="10.0">
+               <ImageView fitHeight="146.0" fitWidth="151.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../icons/user.png" />
+               </ImageView>
+               <TextField fx:id="txtName" />
+               <TextField fx:id="txtEmail" />
+               <PasswordField fx:id="txtPass" />
+               <PasswordField fx:id="txtConfirmPass" />
+               <DatePicker fx:id="calendar" prefHeight="25.0" prefWidth="199.0" />
+               <CheckBox fx:id="checkAdmin" mnemonicParsing="false" prefHeight="17.0" prefWidth="203.0" text="Admin" />
+            </VBox>
+         </HBox>
+         <HBox alignment="BOTTOM_CENTER" prefHeight="40.0" prefWidth="297.0" spacing="20.0">
+            <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#addEmployee" text="Añadir" />
+            <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#deleteEmployee" text="Eliminar" />
+            <Button fx:id="btnClean" mnemonicParsing="false" onAction="#cleanEmployee" text="Limpiar" />
+         </HBox>
+      </VBox>
+   </HBox>
+</AnchorPane>

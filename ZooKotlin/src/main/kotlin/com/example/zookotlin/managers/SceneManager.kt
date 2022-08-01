@@ -11,7 +11,7 @@ import javafx.stage.Stage
  * Clase para manejar las diferentes escenas del programa.
  */
 class SceneManager {
-    
+
     companion object{
 
         /**

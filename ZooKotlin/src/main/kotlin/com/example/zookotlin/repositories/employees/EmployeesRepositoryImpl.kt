@@ -39,9 +39,10 @@ class EmployeesRepositoryImpl: EmployeesRepository {
             db.open()
                 val result = db.insert(query, value.getName(), value.getEmail(), value.getPassword()
                     , value.getBirthDate().toString(), value.isIsAdmin()).orElseThrow { SQLException("Error al añadir empeado") }
-        db.close()
+
         if (result.next()){
             list.add(value)
+            db.close()
             return value
         }
         return  null
@@ -51,9 +52,10 @@ class EmployeesRepositoryImpl: EmployeesRepository {
         val query = "DELETE FROM empleados WHERE email=?"
             db.open()
                 val result = db.delete(query, value.getEmail())
-            db.close()
+
                 if (result>0){
                     list.remove(value)
+                    db.close()
                     return value
                 }
         return null

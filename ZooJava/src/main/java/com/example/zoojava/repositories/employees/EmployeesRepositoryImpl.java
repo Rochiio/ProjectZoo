@@ -37,12 +37,12 @@ public class EmployeesRepositoryImpl implements EmployeesRepository {
                 var result = db.insert(query,value.getName(),value.getEmail(),value.getPassword(),
                         value.getBirthDate().toString(),value.isIsAdmin())
                         .orElseThrow(() -> new SQLException("Error al añadir un empleado"));
-            db.close();
+
                 if (result.next()){
                     list.add(value);
+                    db.close();
                     return value;
                 }
-
         return null;
     }
 
@@ -53,9 +53,9 @@ public class EmployeesRepositoryImpl implements EmployeesRepository {
                 var result = db.delete(query,value.getEmail());
                 if (result>0){
                     list.remove(value);
+                    db.close();
                     return value;
                 }
-            db.close();
         return null;
     }
 

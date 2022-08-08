@@ -24,6 +24,8 @@ class EmployeesRepositoryImplTest {
             throw new RuntimeException(e);
         }
     }
+
+
     @BeforeEach
     void setUp(){
         try {
@@ -62,7 +64,7 @@ class EmployeesRepositoryImplTest {
         repository.add(test);
         var list = repository.findAll();
         assertAll(
-                () -> assertEquals(list.size(),1),
+                () -> assertEquals(1 ,list.size()),
                 () -> assertEquals(list.get(0).getName(),test.getName()),
                 () -> assertEquals(list.get(0).getEmail(),test.getEmail()),
                 () -> assertEquals(list.get(0).getPassword(),test.getPassword()),

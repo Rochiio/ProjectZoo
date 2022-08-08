@@ -186,10 +186,10 @@ class EmployeesController {
      */
     private fun isCorrectFields(): Boolean {
         val sb = StringBuilder()
-        if (txtName.text == "" || !txtName.text.matches("[A-Z][a-z]*")) {
+        if (txtName.text == "" || !txtName.text.matches(Regex("[A-Z][a-z]*"))) {
             sb.append("El nombre no puede estar vacío o ser incorrecto").append("\n")
         }
-        if (txtEmail.text == "" || !txtEmail.text.matches("^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$")) {
+        if (txtEmail.text == "" || !txtEmail.text.matches(Regex("^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$"))) {
             sb.append("El correo no puede estar vacío o ser incorrecto").append("\n")
         }
         if (txtPass.text == "" || txtPass.text.length < 7) {

@@ -10,7 +10,7 @@ import java.sql.SQLException
  * Repositorio de animales del programa, implementado con una base de datos sqlite y con lista de observables.
  * En algunos métodos uso directamente la lista para ahorranos entradas a la base de datos.
  */
-class AnimalsRepositoryImpl(): AnimalsRepository {
+class AnimalsRepositoryImpl: AnimalsRepository {
     private val list: ObservableList<Animal> = FXCollections.observableArrayList()
     private val db: DataBaseManager = DataBaseManager.getInstance()
 

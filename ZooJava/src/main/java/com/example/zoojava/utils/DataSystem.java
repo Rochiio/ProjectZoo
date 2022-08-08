@@ -14,12 +14,14 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 
-
+/**
+ * Clase para el manejo de daots tanto como añadirlos o la limpieza de estos
+ */
 public class DataSystem {
-    private ImportAnimalCsv  animalCsv= new ImportAnimalCsvImpl();
-    private ImportEmployeeCsv employeeCsv= new ImportEmployeeCsvImpl();
-    private AnimalsRepository animalsRepository= AnimalsRepositoryImpl.getInstance();
-    private EmployeesRepository employeesRepository= EmployeesRepositoryImpl.getInstance();
+    private final ImportAnimalCsv  animalCsv= new ImportAnimalCsvImpl();
+    private final ImportEmployeeCsv employeeCsv= new ImportEmployeeCsvImpl();
+    private final AnimalsRepository animalsRepository= AnimalsRepositoryImpl.getInstance();
+    private final EmployeesRepository employeesRepository= EmployeesRepositoryImpl.getInstance();
 
 
     

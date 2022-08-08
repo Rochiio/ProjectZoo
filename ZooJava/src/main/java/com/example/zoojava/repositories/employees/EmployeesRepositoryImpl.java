@@ -37,11 +37,12 @@ public class EmployeesRepositoryImpl implements EmployeesRepository {
                 var result = db.insert(query,value.getName(),value.getEmail(),value.getPassword(),
                         value.getBirthDate().toString(),value.isIsAdmin())
                         .orElseThrow(() -> new SQLException("Error al añadir un empleado"));
+            db.close();
                 if (result.next()){
                     list.add(value);
                     return value;
                 }
-            db.close();
+
         return null;
     }
 

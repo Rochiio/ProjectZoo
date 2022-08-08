@@ -7,5 +7,5 @@ import javafx.collections.ObservableList
 interface AnimalsRepository: ICRUD<Animal> {
     fun findAll(): ObservableList<Animal>
     fun findById(id: Int): Animal
-    fun modifyById(id: Int, newAnimal: Animal):Animal
+    fun modifyById(id: Int, newAnimal: Animal):Animal?
 }

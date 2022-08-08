@@ -10,7 +10,7 @@ import java.sql.SQLException
  * Repositorio de animales del programa, implementado con una base de datos sqlite y con lista de observables.
  * En algunos métodos uso directamente la lista para ahorranos entradas a la base de datos.
  */
-class AnimalsRepositoryImpl() {
+class AnimalsRepositoryImpl(): AnimalsRepository {
     private val list: ObservableList<Animal> = FXCollections.observableArrayList()
     private val db: DataBaseManager = DataBaseManager.getInstance()
 
@@ -26,9 +26,9 @@ class AnimalsRepositoryImpl() {
         }
     }
 
-    
+
     @Throws(SQLException::class)
-    fun add(value: Animal): Animal? {
+    override fun add(value: Animal): Animal? {
         val query = "INSERT INTO animales VALUES (null, ?, ?, ?, ?)"
         db.open()
         val result = db.insert(
@@ -44,7 +44,7 @@ class AnimalsRepositoryImpl() {
     }
 
     @Throws(SQLException::class)
-    fun remove(value: Animal): Animal? {
+    override fun remove(value: Animal): Animal? {
         val query = "DELETE FROM animales WHERE id=?"
         db.open()
         val result = db.delete(query, value.getId())
@@ -56,12 +56,12 @@ class AnimalsRepositoryImpl() {
         return null
     }
 
-    fun findAll(): ObservableList<Animal> {
+    override fun findAll(): ObservableList<Animal> {
         return list
     }
 
     @Throws(SQLException::class)
-    fun removeAll() {
+    override fun removeAll() {
         val query = "DELETE FROM animales"
         db.open()
         db.delete(query)
@@ -69,12 +69,12 @@ class AnimalsRepositoryImpl() {
         db.close()
     }
 
-    fun findById(id: Int): Animal {
+    override fun findById(id: Int): Animal {
         return list.filtered { a: Animal -> a.getId() == id }.first()
     }
 
     @Throws(SQLException::class)
-    fun modifyById(id: Int, newAnimal: Animal): Animal? {
+    override fun modifyById(id: Int, newAnimal: Animal): Animal? {
         val query = "UPDATE animales SET name=?, type=?, birthDate=?, img=? WHERE id=?"
             db.open()
                 val result = db.update(

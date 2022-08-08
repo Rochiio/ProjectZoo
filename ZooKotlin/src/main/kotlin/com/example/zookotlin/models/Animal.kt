@@ -15,7 +15,7 @@ class Animal {
     private var img: StringProperty
 
 
-    constructor(id: Int, name: String, type: typeAnimal, birthDate: LocalDate, img: String){
+    constructor(id: Int, name: String, type: typeAnimal, birthDate: LocalDate, img: String?){
         this.id = SimpleIntegerProperty(id)
         this.name = SimpleStringProperty(name)
         this.type = SimpleObjectProperty(type)

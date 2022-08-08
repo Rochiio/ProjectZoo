@@ -133,7 +133,7 @@ public class AnimalsController {
      */
     public void addAnimal() {
         if(!isEmptyFields () && isCorrectFields() ) {
-            var newAnimal = new Animal(0,txtName.getText(),choiceType.getValue(),calendar.getValue(),null);
+            var newAnimal = new Animal(0,txtName.getText(),choiceType.getValue(),calendar.getValue(),imageAnimal.getImage().toString());
             try {
                 animals.add(newAnimal);
             } catch (SQLException e) {
@@ -204,7 +204,7 @@ public class AnimalsController {
     public void modifyAnimal() {
         if(!isEmptyFields () && isCorrectFields() ) {
             var animal = tabla.getSelectionModel().getSelectedItem();
-            var modifyAnimal = new Animal(animal.getId(), txtName.getText(),choiceType.getValue(),calendar.getValue(),null);
+            var modifyAnimal = new Animal(animal.getId(), txtName.getText(),choiceType.getValue(),calendar.getValue(),imageAnimal.getImage().toString());
             try {
                 animals.modifyById(animal.getId(),modifyAnimal);
             } catch (SQLException e) {

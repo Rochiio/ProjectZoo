@@ -82,6 +82,8 @@ class Employee {
         this.isAdmin.set(isAdmin)
     }
 
+
+
     fun toCsv():String{
         return getName() + ";" + getEmail() + ";" + getPassword() + ";" + getBirthDate().toString() + ";" + isIsAdmin()
     }

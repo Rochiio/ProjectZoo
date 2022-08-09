@@ -31,11 +31,18 @@ public class InicioController {
     }
 
 
-    public void changeToAnimals(ActionEvent actionEvent) {
+    /**
+     * Cambiar a la escena de animales.
+     */
+    public void changeToAnimals( ) {
         SceneManager.animalsScene();
     }
 
-    public void changeToEmployees(ActionEvent actionEvent) {
+
+    /**
+     * Cambiar a la escena de empleados.
+     */
+    public void changeToEmployees( ) {
         SceneManager.employeesScene();
     }
 }

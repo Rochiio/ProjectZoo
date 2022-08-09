@@ -24,7 +24,7 @@ class ImportEmployeeCsvImpl: ImportEmployeeCsv {
 
 
     private fun changeToEmployee(line: String): Employee {
-        val campos = line.split(";".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+        val campos = line.split(";")
         val name = campos[0]
         val email = campos[1]
         val password = campos[2]
@@ -35,7 +35,7 @@ class ImportEmployeeCsvImpl: ImportEmployeeCsv {
 
 
     private fun parseFecha(campo: String): LocalDate {
-        val fecha = campo.split("-".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+        val fecha = campo.split("-")
         val dia = fecha[2].toInt()
         val mes = fecha[1].toInt()
         val year = fecha[0].toInt()

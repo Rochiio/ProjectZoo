@@ -48,7 +48,7 @@
 <?import javafx.scene.text.Text?>
 
 <VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.example.zoojava.controllers.LoginController">
+      fx:controller="com.example.zookotlin.controllers.LoginController">
     <MenuBar VBox.vgrow="NEVER">
         <Menu mnemonicParsing="false" text="Opciones">
             <MenuItem mnemonicParsing="false" onAction="#closeProgram" text="Cerrar"/>

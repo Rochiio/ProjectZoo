@@ -10,7 +10,7 @@ import java.util.stream.Collectors
 
 class ImportAnimalCsvImpl: ImportAnimalCsv {
     override fun importData(): List<Animal> {
-        var list: MutableList<Animal> = Files.lines(Path.of(Globals.ANIMAL_CSV)).skip(1).map { line: String ->
+        var list = Files.lines(Path.of(Globals.ANIMALS_CSV)).skip(1).map { line: String ->
             this.changeToAnimal(
                 line
             )
@@ -20,7 +20,7 @@ class ImportAnimalCsvImpl: ImportAnimalCsv {
 
 
     private fun changeToAnimal(line: String): Animal {
-        val campos = line.split(";".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+        val campos = line.split(";")
         val id = campos[0].toInt()
         val name = campos[1]
         val type = typeAnimal.valueOf(campos[2])
@@ -31,7 +31,7 @@ class ImportAnimalCsvImpl: ImportAnimalCsv {
 
 
     private fun parseFecha(campo: String): LocalDate {
-        val fecha = campo.split("-".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+        val fecha = campo.split("-")
         val dia = fecha[2].toInt()
         val mes = fecha[1].toInt()
         val year = fecha[0].toInt()

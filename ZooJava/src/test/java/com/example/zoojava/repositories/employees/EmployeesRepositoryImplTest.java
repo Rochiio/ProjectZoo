@@ -1,6 +1,5 @@
 package com.example.zoojava.repositories.employees;
 
-import com.example.zoojava.managers.DataBaseManager;
 import com.example.zoojava.models.Employee;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -86,7 +85,7 @@ class EmployeesRepositoryImplTest {
 
 
     @Test
-    void findByEmailNull() throws SQLException {
+    void findByEmailNull() {
         var find = repository.findByEmail(test.getEmail());
         assertNull(find);
     }

@@ -31,7 +31,10 @@ class EmployeesRepositoryImpl: EmployeesRepository {
     }
 
     override fun findByEmail(email: String): Employee? {
-        return list.filtered { a: Employee -> a.getEmail() == email }.first()
+        val find = list.stream().filter { a: Employee ->
+            a.getEmail() == email
+        }.findFirst()
+        return find.orElse(null)
     }
 
     override fun add(value: Employee): Employee? {

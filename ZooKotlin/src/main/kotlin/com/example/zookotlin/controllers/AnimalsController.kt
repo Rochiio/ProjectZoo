@@ -5,15 +5,16 @@ import com.example.zookotlin.models.Animal
 import com.example.zookotlin.models.enums.typeAnimal
 import com.example.zookotlin.repositories.animals.AnimalsRepository
 import com.example.zookotlin.repositories.animals.AnimalsRepositoryImpl
+import javafx.beans.value.ObservableValue
 import javafx.collections.FXCollections
 import javafx.collections.ObservableList
+import javafx.event.ActionEvent
 import javafx.fxml.FXML
 import javafx.scene.control.*
 import javafx.scene.image.Image
 import javafx.scene.image.ImageView
 import javafx.stage.FileChooser
 import javafx.util.Callback
-import java.net.URL
 import java.sql.SQLException
 import java.time.LocalDate
 
@@ -66,7 +67,7 @@ class AnimalsController {
      */
     private fun eventos() {
         tabla.selectionModel.selectedItemProperty()
-            .addListener { observable, oldValue, newValue ->
+            .addListener { observable, oldValue, newValue->
                 changeAnimal(
                     newValue
                 )
@@ -92,7 +93,7 @@ class AnimalsController {
      * @param newValue los nuevos datos del animal.
      */
     private fun putDataAnimal(newValue: Animal) {
-        txtId.text = java.lang.String.valueOf(newValue.getId())
+        txtId.text = newValue.getId().toString()
         txtName.text = newValue.getName()
         calendar.value = newValue.getBirthDate()
         choiceType.value = newValue.getType()
@@ -109,7 +110,7 @@ class AnimalsController {
         return if (newValue.getImg() == null || newValue.getImg() == "null") {
             addImageDefault()
         } else {
-            Image(java.lang.String.valueOf(newValue.getImg()))
+            Image(newValue.getImg())
         }
     }
 
@@ -118,9 +119,9 @@ class AnimalsController {
      * Poner los valores a las celdas de las tablas.
      */
     private fun valoresCeldas() {
-       columnName.setCellValueFactory { cellFactory -> cellFactory.value.nameProperty() }
-       columnBirthDate.setCellValueFactory { cellFactory -> cellFactory.value.birthDateProperty()}
-       choiceType.items = types
+        columnName.setCellValueFactory { cellFactory -> cellFactory.value.nameProperty() }
+        columnBirthDate.setCellValueFactory { cellFactory -> cellFactory.value.birthDateProperty()}
+        choiceType.items = types
     }
 
 
@@ -205,12 +206,9 @@ class AnimalsController {
     fun modifyAnimal() {
         if (!isEmptyFields() && isCorrectFields()) {
             val animal = tabla.selectionModel.selectedItem
-            val modifyAnimal = Animal(animal.getId(), txtName.text, choiceType.value, calendar.value, imageAnimal.image.toString())
-            try {
+            val modifyAnimal =
+                Animal(animal.getId(), txtName.text, choiceType.value, calendar.value, imageAnimal.image.toString())
                 animals.modifyById(animal.getId(), modifyAnimal)
-            } catch (e: SQLException) {
-                throw RuntimeException(e)
-            }
         }
     }
 
@@ -219,7 +217,7 @@ class AnimalsController {
      * Limpiar los datos sobre el animal.
      */
     fun cleanAnimal() {
-        txtName.text = "0"
+        txtId.text = "0"
         txtName.text = ""
         calendar.value = LocalDate.now()
         choiceType.value = typeAnimal.MAMIFEROS
@@ -232,8 +230,8 @@ class AnimalsController {
      * @return la imagen
      */
     private fun addImageDefault(): Image {
-        val imgeUrl: URL = ZooApplication::class.java.getResource("icons/img.png") as URL
-        return Image(imgeUrl.toString())
+        val imgeUrl = ZooApplication::class.java.getResource("icons/img.png")
+        return Image(imgeUrl!!.toString())
     }
 
     /**
@@ -250,11 +248,7 @@ class AnimalsController {
             imageAnimal.image = Image(img.absolutePath)
             val animal = tabla.selectionModel.selectedItem
             animal.setImg(img.absolutePath)
-            try {
-                animals.modifyById(animal.getId(), animal)
-            } catch (e: SQLException) {
-                throw RuntimeException(e)
-            }
+            animals.modifyById(animal.getId(), animal)
         }
     }
 }

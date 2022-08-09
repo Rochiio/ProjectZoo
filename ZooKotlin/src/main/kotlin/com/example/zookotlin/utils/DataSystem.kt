@@ -76,6 +76,7 @@ class DataSystem {
         val employees = employeeRepository.findAll()
         pw.println("name;email;password;birthdate;isAdmin")
         employees.forEach {a -> pw.println(a.toCsv())}
+        pw.close()
     }
 
 
@@ -83,9 +84,10 @@ class DataSystem {
      * Backup de los animales en CSV.
      */
     private fun backupAnimals() {
-        val pw = PrintWriter(FileWriter(Globals.ANIMAL_CSV,false))
+        val pw = PrintWriter(FileWriter(Globals.ANIMALS_CSV,false))
         val animals = animalsRepository.findAll()
         pw.println("id;name;type;birthdate;img")
         animals.forEach {a -> pw.println(a.toCsv())}
+        pw.close()
     }
 }

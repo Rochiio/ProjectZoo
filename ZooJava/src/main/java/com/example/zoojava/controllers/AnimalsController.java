@@ -218,7 +218,7 @@ public class AnimalsController {
      * Limpiar los datos sobre el animal.
      */
     public void cleanAnimal() {
-        txtName.setText("0");
+        txtId.setText("0");
         txtName.setText("");
         calendar.setValue(LocalDate.now());
         choiceType.setValue(typeAnimal.MAMIFEROS);

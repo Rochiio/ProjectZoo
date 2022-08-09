@@ -9,5 +9,7 @@ module com.example.zookotlin {
     requires java.desktop;
 
     opens com.example.zookotlin to javafx.fxml;
+    opens com.example.zookotlin.controllers to javafx.fxml;
     exports com.example.zookotlin;
+    exports com.example.zookotlin.controllers;
 }

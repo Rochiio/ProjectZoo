@@ -11,23 +11,23 @@ import java.time.LocalDate
 
 internal class AnimalsRepositoryImplTest {
 
-    private val repository: AnimalsRepository? = AnimalsRepositoryImpl.getInstance()
+    private val repository: AnimalsRepository = AnimalsRepositoryImpl.getInstance()!!
     private val test: Animal = Animal(1, "Kuno", typeAnimal.MAMIFEROS, LocalDate.now(), null)
 
 
     @AfterEach
     fun tearDown() {
-        repository!!.removeAll()
+        repository.removeAll()
     }
 
     @BeforeEach
     fun setUp() {
-        repository!!.removeAll()
+        repository.removeAll()
     }
 
     @Test
     fun add() {
-        val add = repository!!.add(test)
+        val add = repository.add(test)
         assertAll(
             Executable { assertEquals(add!!.getName(), test.getName()) },
             Executable { assertEquals(add!!.getType(), test.getType()) },
@@ -38,7 +38,7 @@ internal class AnimalsRepositoryImplTest {
 
     @Test
     fun remove() {
-        val add= repository!!.add(test)
+        val add= repository.add(test)
         val remove = repository.remove(add!!)
         assertAll(
             Executable { assertEquals(remove!!.getId(), add.getId()) },
@@ -51,7 +51,7 @@ internal class AnimalsRepositoryImplTest {
 
     @Test
     fun findAll() {
-        val add = repository!!.add(test)
+        val add = repository.add(test)
         val lista = repository.findAll()
         assertAll(
             Executable { assertEquals(1, lista.size) },
@@ -65,7 +65,7 @@ internal class AnimalsRepositoryImplTest {
 
     @Test
     fun findById() {
-        val add  = repository!!.add(test)
+        val add  = repository.add(test)
         val find = repository.findById(add!!.getId())
         assertAll(
             Executable { assertEquals(find.getId(), add.getId()) },
@@ -78,7 +78,7 @@ internal class AnimalsRepositoryImplTest {
 
     @Test
     fun modifyById() {
-        val add = repository!!.add(test)
+        val add = repository.add(test)
         add!!.setName("cambiado")
         val modify = repository.modifyById(add.getId(), add)
         assertAll(

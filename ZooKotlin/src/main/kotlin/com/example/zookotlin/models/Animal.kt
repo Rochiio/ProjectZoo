@@ -12,7 +12,7 @@ class Animal {
     private var name: StringProperty
     private var type: ObjectProperty<typeAnimal>
     private var birthDate: ObjectProperty<LocalDate>
-    private var img: StringProperty
+    private var img: StringProperty?
 
 
     constructor(id: Int, name: String, type: typeAnimal, birthDate: LocalDate, img: String?){
@@ -73,16 +73,16 @@ class Animal {
         this.birthDate.set(birthDate)
     }
 
-    fun getImg(): String {
-        return img.get()
+    fun getImg(): String? {
+        return img?.get()
     }
 
-    fun imgProperty(): StringProperty {
+    fun imgProperty(): StringProperty? {
         return img
     }
 
-    fun setImg(img: String) {
-        this.img.set(img)
+    fun setImg(img: String?) {
+        this.img?.set(img)
     }
 
 
